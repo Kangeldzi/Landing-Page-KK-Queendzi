@@ -6,178 +6,217 @@
   <title>Kelompok Belajar Kelas 5 - SDN Negeri Situ Udik</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-light: #60a5fa;
-      --primary-dark: #1e40af;
-      --secondary: #ffffff;
-      --accent-gold: #fbbf24;
-      --accent-blue-light: #dbeafe;
-      --text-dark: #1e293b;
-      --text-muted: #64748b;
-      --bg-light: #f8fafc;
-      --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
-      --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.08);
-      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
-      --radius-sm: 12px;
-      --radius-md: 18px;
-      --radius-lg: 28px;
-      --font: 'Quicksand', sans-serif;
-      --transition: 0.3s ease;
+      --primary: #4F46E5; /* Indigo */
+      --primary-light: #818CF8;
+      --primary-dark: #3730A3;
+      --secondary: #10B981; /* Emerald */
+      --accent-pink: #F472B6;
+      --accent-yellow: #FBBF24;
+      --accent-orange: #F97316;
+      --bg-light: #F3F4F6;
+      --bg-card: #FFFFFF;
+      --text-dark: #1F2937;
+      --text-muted: #6B7280;
+      --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+      --shadow-clay: 8px 8px 16px rgba(0,0,0,0.08), -8px -8px 16px rgba(255,255,255,0.9);
+      --shadow-clay-inner: inset 4px 4px 8px rgba(0,0,0,0.05), inset -4px -4px 8px rgba(255,255,255,0.8);
+      --radius-sm: 16px;
+      --radius-md: 24px;
+      --radius-lg: 32px;
+      --font-heading: 'Fredoka', sans-serif;
+      --font-body: 'Quicksand', sans-serif;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { font-family: var(--font); background: var(--bg-light); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+    body { font-family: var(--font-body); background: var(--bg-light); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
     button { cursor: pointer; font-family: inherit; border: none; background: none; }
     .container { width: min(1200px, 92%); margin-inline: auto; }
 
     /* Animasi */
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    @keyframes wiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(5deg); } 75% { transform: rotate(-5deg); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes float-delay { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
     @keyframes popIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
     .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* Navbar */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); box-shadow: var(--shadow-sm); }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(243, 244, 246, 0.9); backdrop-filter: blur(12px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 0; }
-    .brand { display: flex; align-items: center; gap: 0.7rem; font-weight: 700; font-size: 1.1rem; color: var(--primary-dark); }
-    .brand-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); border-radius: 14px; display: grid; place-items: center; color: white; font-size: 1.4rem; box-shadow: 0 4px 10px rgba(37,99,235,0.3); }
-    .nav-links { display: flex; align-items: center; gap: 0.3rem; }
-    .nav-links a { padding: 0.5rem 0.9rem; border-radius: 50px; font-weight: 600; font-size: 0.92rem; transition: var(--transition); }
-    .nav-links a:hover { background: var(--accent-blue-light); color: var(--primary-dark); }
-    .nav-cta { background: var(--primary) !important; color: white !important; padding: 0.55rem 1.2rem !important; border-radius: 50px !important; }
+    .brand { display: flex; align-items: center; gap: 0.7rem; font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--primary-dark); }
+    .brand-icon { width: 44px; height: 44px; background: var(--primary); border-radius: 50%; display: grid; place-items: center; color: white; font-size: 1.4rem; box-shadow: var(--shadow-clay); }
+    .nav-links { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-links a { padding: 0.5rem 1rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+    .nav-links a:hover { background: var(--primary-light); color: white; }
+    .nav-cta { background: var(--primary) !important; color: white !important; padding: 0.6rem 1.4rem !important; border-radius: 50px !important; box-shadow: var(--shadow-clay); }
     .hamburger { display: none; flex-direction: column; gap: 5px; padding: 10px; }
-    .hamburger span { width: 26px; height: 3px; background: var(--primary-dark); border-radius: 3px; transition: var(--transition); }
+    .hamburger span { width: 26px; height: 3px; background: var(--primary-dark); border-radius: 3px; transition: 0.3s; }
     .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     @media (max-width: 900px) {
       .hamburger { display: flex; }
-      .nav-links { position: fixed; top: 68px; left: 0; right: 0; background: white; flex-direction: column; padding: 1.2rem; gap: 0.5rem; box-shadow: var(--shadow-lg); transform: translateY(-150%); transition: var(--transition); border-radius: 0 0 24px 24px; }
+      .nav-links { position: fixed; top: 70px; left: 0; right: 0; background: white; flex-direction: column; padding: 1.5rem; gap: 0.8rem; box-shadow: var(--shadow-soft); transform: translateY(-150%); transition: 0.3s; border-radius: 0 0 24px 24px; }
       .nav-links.open { transform: translateY(0); }
       .nav-links a { width: 100%; text-align: center; }
     }
 
-    /* Tombol */
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.6rem; border-radius: 50px; font-weight: 700; font-size: 0.95rem; transition: var(--transition); border: 2px solid transparent; }
-    .btn-primary { background: var(--primary); color: white; box-shadow: 0 6px 16px rgba(37,99,235,0.35); }
+    /* Tombol Umum */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 50px; font-family: var(--font-heading); font-weight: 600; font-size: 1rem; transition: 0.3s; box-shadow: var(--shadow-clay); border: none; }
+    .btn:active { transform: scale(0.95); box-shadow: var(--shadow-clay-inner); }
+    .btn-primary { background: var(--primary); color: white; }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
-    .btn-outline { background: white; color: var(--primary-dark); border-color: var(--primary-light); }
-    .btn-outline:hover { background: var(--accent-blue-light); transform: translateY(-3px); }
-    .btn-sm { padding: 0.5rem 1.1rem; font-size: 0.85rem; }
+    .btn-yellow { background: var(--accent-yellow); color: #78350F; }
+    .btn-yellow:hover { background: #F59E0B; transform: translateY(-3px); }
+    .btn-pink { background: var(--accent-pink); color: white; }
+    .btn-pink:hover { background: #EC4899; transform: translateY(-3px); }
 
-    /* Hero */
-    .hero { padding: 8rem 0 4rem; position: relative; overflow: hidden; background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 40%, #f8fafc 100%); }
-    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.82rem; font-weight: 700; color: var(--primary-dark); box-shadow: var(--shadow-sm); margin-bottom: 1.2rem; }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; font-weight: 700; color: var(--primary-dark); margin-bottom: 1rem; }
-    .hero h1 .highlight { color: var(--primary); position: relative; display: inline-block; }
-    .hero h1 .highlight::after { content: ''; position: absolute; bottom: 4px; left: 0; right: 0; height: 10px; background: rgba(251,191,36,0.5); border-radius: 6px; z-index: -1; }
-    .hero p.sub { font-size: 1.05rem; color: var(--text-muted); max-width: 520px; margin-bottom: 1.6rem; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.8rem; }
-    .hero-meta { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-    .hero-meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; font-weight: 600; color: var(--text-dark); }
-    .hero-illustration { position: relative; display: grid; place-items: center; min-height: 360px; }
+    /* HERO PLAYGROUND (Sesuai Gambar) */
+    .hero-playground { padding: 120px 0 60px; position: relative; overflow: hidden; background: #F3F4F6; }
+    .playground-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 1.5rem; align-items: stretch; }
     
-    /* Karikatur SVG */
-    .karikatur-card { width: 100%; max-width: 450px; background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: 1.5rem; position: relative; z-index: 2; animation: float 6s ease-in-out infinite; border: 4px solid white; }
-    .floating-emoji { position: absolute; font-size: 2rem; animation: float 4s ease-in-out infinite; z-index: 1; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
-    .emoji-1 { top: 5%; left: 2%; animation-delay: 0s; }
-    .emoji-2 { top: 10%; right: 0%; animation-delay: 1s; }
-    .emoji-3 { bottom: 5%; left: 0%; animation-delay: 2s; }
-    .emoji-4 { bottom: 0%; right: 5%; animation-delay: 1.5s; }
-    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero p.sub { margin-inline: auto; } .hero-actions, .hero-meta { justify-content: center; } .hero-illustration { margin-top: 2rem; } }
+    /* Kartu Kiri (Misi Mingguan) */
+    .play-card-left { display: flex; flex-direction: column; gap: 1.5rem; }
+    .action-cards { display: flex; gap: 0.8rem; }
+    .action-card { flex: 1; background: white; border-radius: var(--radius-md); padding: 1rem 0.5rem; text-align: center; box-shadow: var(--shadow-clay); transition: 0.3s; cursor: pointer; }
+    .action-card:hover { transform: translateY(-5px); }
+    .action-card .emoji { font-size: 1.5rem; margin-bottom: 0.3rem; display: block; }
+    .action-card span { font-size: 0.75rem; font-weight: 700; color: var(--text-dark); }
+
+    .mission-card { background: white; border-radius: var(--radius-lg); padding: 2rem 1.5rem; box-shadow: var(--shadow-clay); text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .mission-icon { font-size: 3rem; margin-bottom: 0.5rem; animation: float 3s ease-in-out infinite; }
+    .mission-card h2 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-dark); margin-bottom: 0.5rem; }
+    .mission-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    
+    /* Progress Bar */
+    .progress-section { text-align: left; margin-bottom: 1.5rem; }
+    .progress-header { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .progress-bar-container { height: 12px; background: var(--bg-light); border-radius: 50px; display: flex; overflow: hidden; box-shadow: var(--shadow-clay-inner); }
+    .progress-segment { height: 100%; }
+    .seg-design { background: var(--accent-orange); width: 20%; }
+    .seg-skills { background: var(--primary); width: 45%; }
+    .seg-powers { background: var(--accent-yellow); width: 35%; }
+    .progress-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; margin-top: 0.5rem; color: var(--text-muted); }
+    .progress-labels span::before { content: '●'; margin-right: 4px; }
+    .lbl-design::before { color: var(--accent-orange); }
+    .lbl-skills::before { color: var(--primary); }
+    .lbl-powers::before { color: var(--accent-yellow); }
+
+    .mission-bottom { background: #FEF3C7; border-radius: var(--radius-md); padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; box-shadow: var(--shadow-clay); position: relative; }
+    .mission-bottom .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+    .badge { background: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.3rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    .trust-text { font-size: 0.75rem; font-weight: 700; color: #B45309; }
+
+    /* Kartu Kanan (Grid Avatar) */
+    .play-card-right { background: white; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-clay); }
+    .avatar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .avatar-item { background: var(--bg-light); border-radius: var(--radius-md); padding: 1rem 0.5rem; text-align: center; box-shadow: var(--shadow-clay-inner); transition: 0.3s; cursor: pointer; }
+    .avatar-item:hover { transform: scale(1.05) translateY(-5px); box-shadow: var(--shadow-clay); background: white; }
+    .avatar-item span { display: block; font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-dark); }
+    .avatar-img { width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; object-fit: cover; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+    
+    /* Info Tambahan di Bawah Hero */
+    .hero-info { text-align: center; margin-top: 2rem; }
+    .hero-info h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--primary-dark); margin-bottom: 0.5rem; }
+    .hero-info p { font-size: 1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+    @media (max-width: 900px) {
+      .playground-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .avatar-grid { grid-template-columns: repeat(2, 1fr); }
+      .action-cards { flex-direction: column; }
+    }
 
     /* Section Umum */
     section { padding: 4rem 0; }
     .section-head { text-align: center; max-width: 700px; margin: 0 auto 2.5rem; }
-    .section-tag { display: inline-block; background: var(--accent-blue-light); color: var(--primary-dark); padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.8rem; }
-    .section-head h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); color: var(--primary-dark); margin-bottom: 0.5rem; }
-    .section-head p { color: var(--text-muted); font-size: 0.98rem; }
+    .section-tag { display: inline-block; background: #E0E7FF; color: var(--primary-dark); padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; font-family: var(--font-heading); }
+    .section-head h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--primary-dark); margin-bottom: 0.5rem; }
+    .section-head p { color: var(--text-muted); font-size: 1rem; }
 
     /* Profil */
-    .profile-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 2rem; display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem; align-items: center; }
-    .profile-emoji { font-size: 5rem; text-align: center; animation: wiggle 3s ease-in-out infinite; }
-    .profile-info h3 { font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 0.8rem; }
-    .profile-info .desc { color: var(--text-muted); margin-bottom: 1.2rem; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.8rem; }
-    .stat-item { background: var(--bg-light); border-radius: var(--radius-sm); padding: 0.8rem 1rem; text-align: center; border: 2px solid transparent; }
-    .stat-item:hover { border-color: var(--primary-light); transform: translateY(-3px); }
-    .stat-value { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
-    .stat-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; }
+    .profile-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); padding: 2rem; display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem; align-items: center; }
+    .profile-emoji { font-size: 6rem; text-align: center; animation: float 4s ease-in-out infinite; }
+    .profile-info h3 { font-family: var(--font-heading); font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 0.8rem; }
+    .profile-info .desc { color: var(--text-muted); margin-bottom: 1.5rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
+    .stat-item { background: var(--bg-light); border-radius: var(--radius-sm); padding: 1rem; text-align: center; box-shadow: var(--shadow-clay-inner); }
+    .stat-value { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
     @media (max-width: 768px) { .profile-card { grid-template-columns: 1fr; text-align: center; } }
 
     /* Anggota & Filter */
     .filter-bar { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; align-items: center; }
     .search-box { position: relative; flex: 1; max-width: 320px; }
-    .search-box input { width: 100%; padding: 0.75rem 1rem 0.75rem 2.6rem; border-radius: 50px; border: 2px solid #e2e8f0; font-family: inherit; font-size: 0.92rem; transition: var(--transition); }
-    .search-box input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
-    .search-box .search-ico { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--text-muted); }
+    .search-box input { width: 100%; padding: 0.8rem 1rem 0.8rem 2.8rem; border-radius: 50px; border: 2px solid #E5E7EB; font-family: var(--font-body); font-size: 0.95rem; transition: 0.3s; background: white; }
+    .search-box input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
+    .search-box .search-ico { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 1.1rem; color: var(--text-muted); }
     .filter-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
-    .chip { padding: 0.5rem 1rem; border-radius: 50px; background: white; border: 2px solid #e2e8f0; font-size: 0.82rem; font-weight: 600; color: var(--text-muted); transition: var(--transition); }
+    .chip { padding: 0.6rem 1.2rem; border-radius: 50px; background: white; border: 2px solid #E5E7EB; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); transition: 0.3s; }
     .chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+    
     .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
-    .member-card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; border: 2px solid transparent; animation: popIn 0.5s ease backwards; }
-    .member-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--accent-blue-light); }
-    .member-photo { aspect-ratio: 1 / 1; display: grid; place-items: center; font-size: 4.5rem; background: linear-gradient(135deg, var(--accent-blue-light), #bfdbfe); position: relative; }
+    .member-card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; border: 3px solid transparent; animation: popIn 0.5s ease backwards; }
+    .member-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-clay); border-color: #E0E7FF; }
+    .member-photo { aspect-ratio: 1 / 1; display: grid; place-items: center; font-size: 4.5rem; background: #F3F4F6; position: relative; }
     .member-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .member-number { position: absolute; top: 0.7rem; left: 0.7rem; background: var(--accent-gold); color: #78350f; font-weight: 700; font-size: 0.78rem; padding: 0.25rem 0.7rem; border-radius: 50px; box-shadow: var(--shadow-sm); }
-    .member-body { padding: 1.1rem; display: flex; flex-direction: column; flex: 1; }
-    .member-name { font-weight: 700; font-size: 1.05rem; color: var(--primary-dark); margin-bottom: 0.2rem; }
-    .member-role { display: inline-block; align-self: flex-start; background: var(--accent-blue-light); color: var(--primary-dark); font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 50px; margin-bottom: 0.6rem; }
-    .member-class { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem; }
-    .member-desc { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1rem; flex: 1; }
-    .member-btn { width: 100%; justify-content: center; }
+    .member-number { position: absolute; top: 1rem; left: 1rem; background: var(--accent-yellow); color: #78350F; font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .member-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .member-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--text-dark); margin-bottom: 0.3rem; }
+    .member-role { display: inline-block; align-self: flex-start; background: #E0E7FF; color: var(--primary-dark); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 50px; margin-bottom: 0.8rem; }
+    .member-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.2rem; flex: 1; }
+    .member-btn { width: 100%; padding: 0.7rem; font-size: 0.9rem; border-radius: var(--radius-sm); }
 
     /* Modal */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); display: none; place-items: center; z-index: 2000; padding: 1rem; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(31, 41, 55, 0.6); backdrop-filter: blur(5px); display: none; place-items: center; z-index: 2000; padding: 1rem; }
     .modal-overlay.open { display: grid; }
-    .modal { background: white; border-radius: var(--radius-lg); max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 1.8rem; position: relative; animation: popIn 0.3s ease; }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-light); display: grid; place-items: center; font-size: 1.2rem; transition: var(--transition); }
-    .modal-close:hover { background: #fee2e2; color: #dc2626; transform: rotate(90deg); }
-    .modal-photo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 1rem; display: grid; place-items: center; font-size: 3.5rem; background: linear-gradient(135deg, var(--accent-blue-light), #bfdbfe); overflow: hidden; border: 4px solid white; box-shadow: var(--shadow-md); }
+    .modal { background: white; border-radius: var(--radius-lg); max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; animation: popIn 0.3s ease; box-shadow: var(--shadow-clay); }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-light); display: grid; place-items: center; font-size: 1.2rem; transition: 0.3s; color: var(--text-dark); }
+    .modal-close:hover { background: #FEE2E2; color: #DC2626; transform: rotate(90deg); }
+    .modal-photo { width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 1.5rem; display: grid; place-items: center; font-size: 4rem; background: var(--bg-light); overflow: hidden; border: 6px solid white; box-shadow: var(--shadow-soft); }
     .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .modal h3 { text-align: center; color: var(--primary-dark); font-size: 1.3rem; margin-bottom: 0.3rem; }
-    .modal .m-role { text-align: center; display: block; margin: 0 auto 1rem; }
-    .modal-info { display: grid; gap: 0.8rem; margin-top: 1rem; }
-    .modal-info-item { background: var(--bg-light); border-radius: var(--radius-sm); padding: 0.8rem 1rem; }
-    .modal-info-item .label { font-size: 0.72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.2rem; }
-    .modal-info-item .value { font-size: 0.9rem; color: var(--text-dark); }
+    .modal h3 { text-align: center; font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .modal .m-role { text-align: center; display: block; margin: 0 auto 1.5rem; width: fit-content; }
+    .modal-info { display: grid; gap: 1rem; }
+    .modal-info-item { background: var(--bg-light); border-radius: var(--radius-sm); padding: 1rem; }
+    .modal-info-item .label { font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.2rem; }
+    .modal-info-item .value { font-size: 0.95rem; color: var(--text-dark); font-weight: 500; }
 
     /* Tugas & Galeri & Proyek */
-    .tasks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
-    .task-card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: 1.3rem; border-left: 6px solid var(--primary-light); }
-    .task-head { display: flex; justify-content: space-between; margin-bottom: 0.6rem; }
-    .task-title { font-weight: 700; color: var(--primary-dark); }
-    .task-status { font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 50px; }
-    .status-selesai { background: #dcfce7; color: #16a34a; }
-    .status-proses { background: #fef3c7; color: #b45309; }
-    .task-owner { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; }
-    .task-progress { height: 8px; background: #e2e8f0; border-radius: 50px; overflow: hidden; margin-top: 0.8rem; }
-    .task-progress-bar { height: 100%; background: var(--primary); }
+    .tasks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+    .task-card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); padding: 1.5rem; border-left: 8px solid var(--accent-yellow); }
+    .task-head { display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
+    .task-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--text-dark); }
+    .task-status { font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 50px; }
+    .status-selesai { background: #D1FAE5; color: #065F46; }
+    .status-proses { background: #FEF3C7; color: #92400E; }
+    .task-owner { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; }
+    .task-progress { height: 10px; background: #E5E7EB; border-radius: 50px; overflow: hidden; margin-top: 1rem; }
+    .task-progress-bar { height: 100%; background: var(--primary); border-radius: 50px; }
 
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
-    .gallery-item { aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; position: relative; cursor: pointer; background: linear-gradient(135deg, var(--accent-blue-light), #bfdbfe); display: grid; place-items: center; font-size: 3.5rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+    .gallery-item { aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; position: relative; cursor: pointer; background: #E5E7EB; display: grid; place-items: center; font-size: 4rem; box-shadow: var(--shadow-soft); transition: 0.3s; }
+    .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-clay); }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 1.5rem 0.8rem 0.6rem; font-size: 0.78rem; }
+    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 2rem 1rem 0.8rem; font-size: 0.85rem; font-weight: 600; }
 
-    .project-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .project-visual { border-radius: var(--radius-md); background: linear-gradient(135deg, #fef3c7, #fde68a); display: grid; place-items: center; font-size: 5rem; min-height: 220px; }
+    .project-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .project-visual { border-radius: var(--radius-md); background: linear-gradient(135deg, #FEF3C7, #FDE68A); display: grid; place-items: center; font-size: 6rem; min-height: 250px; box-shadow: var(--shadow-clay-inner); }
     @media (max-width: 768px) { .project-card { grid-template-columns: 1fr; } }
 
     /* Footer */
-    footer { background: var(--primary-dark); color: white; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+    footer { background: var(--primary-dark); color: white; padding: 4rem 0 2rem; margin-top: 3rem; border-radius: 40px 40px 0 0; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.2rem; text-align: center; font-size: 0.82rem; color: #94a3b8; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem; text-align: center; font-size: 0.9rem; color: #9CA3AF; }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
 
-    .back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; display: grid; place-items: center; font-size: 1.2rem; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 900; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: grid; place-items: center; font-size: 1.5rem; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 900; box-shadow: var(--shadow-clay); }
     .back-to-top.show { opacity: 1; visibility: visible; }
   </style>
 </head>
@@ -188,129 +227,101 @@
     <div class="container nav-inner">
       <a href="#beranda" class="brand">
         <span class="brand-icon" id="navLogo">🎓</span>
-        <span id="navBrandText">Kelompok Belajar Kelas 5</span>
+        <span id="navBrandText">Kelas 5</span>
       </a>
       <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="#beranda">Beranda</a>
         <a href="#anggota">Anggota</a>
-        <a href="#tugas">Pembagian Tugas</a>
+        <a href="#tugas">Tugas</a>
         <a href="#galeri">Galeri</a>
-        <a href="#proyek">Proyek</a>
-        <a href="#admin" class="nav-cta" style="background:var(--accent-gold)!important;color:#78350f!important;">Login Admin</a>
+        <!-- TOMBOL LOGIN ADMIN MENGARAH KE DASHBOARD -->
+        <a href="dashboard-admin.html" class="nav-cta">Login Admin</a>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero" id="beranda">
-    <div class="container hero-grid">
-      <div class="hero-text reveal">
-        <span class="hero-badge"><span class="dot"></span> <span id="heroSchoolBadge">SDN Negeri Situ Udik · Kelas 5</span></span>
-        <h1>Belajar Bersama,<br><span class="highlight">Tumbuh Bersama!</span></h1>
-        <p class="sub" id="heroSub">Kami adalah kelompok belajar siswa-siswi kelas 5 SDN Negeri Situ Udik yang bekerja sama, saling membantu, dan bersemangat menyelesaikan tugas sekolah.</p>
-        <div class="hero-actions">
-          <a href="#anggota" class="btn btn-primary">👋 Lihat Anggota</a>
-          <a href="#proyek" class="btn btn-outline">🚀 Jelajahi Proyek</a>
+  <!-- HERO PLAYGROUND -->
+  <header class="hero-playground" id="beranda">
+    <div class="container">
+      <div class="playground-grid reveal">
+        
+        <!-- KIRI: Misi & Progress -->
+        <div class="play-card-left">
+          <div class="action-cards">
+            <div class="action-card">
+              <span class="emoji">📝</span>
+              <span>Belajar</span>
+            </div>
+            <div class="action-card">
+              <span class="emoji">🤝</span>
+              <span>Diskusi</span>
+            </div>
+            <div class="action-card">
+              <span class="emoji">✨</span>
+              <span>Berkarya</span>
+            </div>
+          </div>
+
+          <div class="mission-card">
+            <div class="mission-icon">🚀</div>
+            <h2>Misi Mingguan</h2>
+            <p>Mari selesaikan proyek kelompok dan kumpulkan bintang!</p>
+            
+            <div class="progress-section">
+              <div class="progress-header">
+                <span>Progres Kelompok</span>
+                <span>72%</span>
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-segment seg-design"></div>
+                <div class="progress-segment seg-skills"></div>
+                <div class="progress-segment seg-powers"></div>
+              </div>
+              <div class="progress-labels">
+                <span class="lbl-design">Materi (20%)</span>
+                <span class="lbl-skills">Praktik (45%)</span>
+                <span class="lbl-powers">Laporan (35%)</span>
+              </div>
+            </div>
+
+            <a href="#tugas" class="btn btn-primary" style="width: 100%;">Lihat Misi</a>
+          </div>
+
+          <div class="mission-bottom">
+            <div class="badges">
+              <span class="badge">🎮 Main</span>
+              <span class="badge">🎨 Kreatif</span>
+              <span class="badge">🤝 Seru</span>
+            </div>
+            <span class="trust-text">Dipercaya oleh Siswa & Guru</span>
+          </div>
         </div>
-        <div class="hero-meta">
-          <div class="hero-meta-item"><span class="ico">🏫</span> <span id="heroSchoolMeta">SDN Negeri Situ Udik</span></div>
-          <div class="hero-meta-item"><span class="ico">📚</span> <span id="heroClassMeta">Kelas 5</span></div>
-          <div class="hero-meta-item"><span class="ico">👧🧑</span> <span id="heroCount">7 Siswa</span></div>
+
+        <!-- KANAN: Grid Avatar Siswa -->
+        <div class="play-card-right">
+          <div class="avatar-grid" id="avatarGrid">
+            <!-- Akan diisi oleh JavaScript -->
+          </div>
+          <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="#anggota" class="btn btn-yellow" style="width: 100%;">Kenali Teman Kami!</a>
+          </div>
         </div>
+
       </div>
-      <div class="hero-illustration reveal">
-        <span class="floating-emoji emoji-1">📖</span>
-        <span class="floating-emoji emoji-2">✨</span>
-        <span class="floating-emoji emoji-3">✏️</span>
-        <span class="floating-emoji emoji-4">💡</span>
-        <div class="karikatur-card">
-          <!-- Ilustrasi Karikatur Anak Sekolah (SVG) -->
-          <svg viewBox="0 0 500 350" xmlns="http://www.w3.org/2000/svg">
-            <!-- Latar Belakang Papan Tulis -->
-            <rect x="50" y="20" width="400" height="180" rx="10" fill="#2d5a4c" stroke="#8b5a2b" stroke-width="8"/>
-            <path d="M80 60 L120 60 M80 80 L140 80 M80 100 L160 100" stroke="white" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
-            <text x="350" y="60" fill="white" font-size="20" font-family="sans-serif" opacity="0.8">1 + 1 = 2</text>
-            
-            <!-- Meja -->
-            <rect x="30" y="250" width="440" height="20" rx="5" fill="#d4a373" stroke="#a67c52" stroke-width="3"/>
-            <rect x="60" y="270" width="15" height="60" fill="#a67c52"/>
-            <rect x="425" y="270" width="15" height="60" fill="#a67c52"/>
 
-            <!-- Anak 1 (Kiri - Hijab) -->
-            <g transform="translate(80, 120)">
-              <circle cx="40" cy="60" r="35" fill="#fcd34d"/> <!-- Wajah -->
-              <path d="M0 60 Q40 120 80 60 Q40 140 0 60" fill="#ef4444"/> <!-- Hijab -->
-              <circle cx="28" cy="55" r="4" fill="#1e293b"/><circle cx="52" cy="55" r="4" fill="#1e293b"/>
-              <path d="M30 70 Q40 80 50 70" stroke="#b91c1c" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <!-- Badan -->
-              <rect x="10" y="95" width="60" height="60" rx="10" fill="white"/>
-              <path d="M10 110 L70 110" stroke="#ef4444" stroke-width="4"/>
-              <polygon points="30,110 50,110 40,130" fill="#ef4444"/>
-              <!-- Tangan -->
-              <circle cx="80" cy="130" r="10" fill="#fcd34d"/>
-              <circle cx="0" cy="130" r="10" fill="#fcd34d"/>
-            </g>
-
-            <!-- Anak 2 (Tengah - Kacamata) -->
-            <g transform="translate(200, 130)">
-              <circle cx="40" cy="50" r="32" fill="#fcd34d"/>
-              <circle cx="28" cy="45" r="10" fill="white" stroke="#1e293b" stroke-width="2"/>
-              <circle cx="52" cy="45" r="10" fill="white" stroke="#1e293b" stroke-width="2"/>
-              <line x1="38" y1="45" x2="42" y2="45" stroke="#1e293b" stroke-width="2"/>
-              <circle cx="28" cy="45" r="3" fill="#1e293b"/><circle cx="52" cy="45" r="3" fill="#1e293b"/>
-              <path d="M30 65 Q40 75 50 65" stroke="#b91c1c" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <!-- Rambut -->
-              <path d="M10 20 Q40 -10 70 20 Q40 10 10 20" fill="#1e293b"/>
-              <!-- Badan -->
-              <rect x="10" y="85" width="60" height="60" rx="10" fill="white"/>
-              <path d="M10 100 L70 100" stroke="#ef4444" stroke-width="4"/>
-              <polygon points="30,100 50,100 40,120" fill="#ef4444"/>
-              <!-- Tangan memegang pensil -->
-              <circle cx="80" cy="120" r="10" fill="#fcd34d"/>
-              <rect x="75" y="95" width="6" height="30" fill="#fbbf24" rx="2"/>
-            </g>
-
-            <!-- Anak 3 (Kanan - Perempuan) -->
-            <g transform="translate(320, 120)">
-              <circle cx="40" cy="60" r="35" fill="#fcd34d"/>
-              <circle cx="28" cy="55" r="4" fill="#1e293b"/><circle cx="52" cy="55" r="4" fill="#1e293b"/>
-              <path d="M30 70 Q40 80 50 70" stroke="#b91c1c" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <!-- Rambut -->
-              <path d="M5 50 Q10 10 40 10 Q70 10 75 50 Q75 80 65 80 Q70 50 40 50 Q10 50 15 80 Q5 80 5 50" fill="#1e293b"/>
-              <!-- Pita Rambut -->
-              <circle cx="15" cy="40" r="8" fill="#ef4444"/>
-              <!-- Badan -->
-              <rect x="10" y="95" width="60" height="60" rx="10" fill="white"/>
-              <path d="M10 110 L70 110" stroke="#ef4444" stroke-width="4"/>
-              <polygon points="30,110 50,110 40,130" fill="#ef4444"/>
-              <!-- Tangan -->
-              <circle cx="80" cy="130" r="10" fill="#fcd34d"/>
-              <circle cx="0" cy="130" r="10" fill="#fcd34d"/>
-            </g>
-            
-            <!-- Buku di Meja -->
-            <rect x="150" y="235" width="80" height="15" rx="3" fill="#3b82f6" transform="rotate(-10 150 235)"/>
-            <rect x="250" y="235" width="60" height="15" rx="3" fill="#ef4444" transform="rotate(5 250 235)"/>
-            <rect x="350" y="235" width="70" height="15" rx="3" fill="#fbbf24" transform="rotate(-5 350 235)"/>
-            
-            <!-- Globe -->
-            <circle cx="50" cy="230" r="18" fill="#3b82f6"/>
-            <path d="M50 212 Q60 230 50 248 M35 230 Q50 220 65 230" stroke="#22c55e" stroke-width="2" fill="none"/>
-            <line x1="50" y1="248" x2="50" y2="255" stroke="#8b5a2b" stroke-width="3"/>
-          </svg>
-        </div>
+      <!-- Info Tambahan -->
+      <div class="hero-info reveal">
+        <h1 id="heroTitle">Selamat Datang di Kelompok Belajar Kelas 5!</h1>
+        <p id="heroSub">SDN Negeri Situ Udik. Tempatnya belajar, bermain, dan tumbuh bersama!</p>
       </div>
+
     </div>
   </header>
 
-  <!-- Profil -->
+  <!-- PROFIL SINGKAT -->
   <section id="profil">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">TENTANG KAMI</span>
-        <h2>Profil Kelompok Belajar</h2>
-      </div>
       <div class="profile-card reveal">
         <div class="profile-emoji" id="profileEmoji">🌈</div>
         <div class="profile-info">
@@ -318,10 +329,8 @@
           <p class="desc" id="profileDesc">Kami adalah kelompok belajar yang terdiri dari 7 siswa-siswi...</p>
           <div class="stats-grid">
             <div class="stat-item"><div class="stat-value" id="statSchool">SDN Negeri Situ Udik</div><div class="stat-label">Sekolah</div></div>
-            <div class="stat-item"><div class="stat-value" id="statClass">Kelas 5</div><div class="stat-label">Kelas</div></div>
             <div class="stat-item"><div class="stat-value" id="statCount">7</div><div class="stat-label">Anggota</div></div>
-            <div class="stat-item"><div class="stat-value" id="statYear">2026/2027</div><div class="stat-label">Tahun Pelajaran</div></div>
-            <div class="stat-item"><div class="stat-value" id="statSubject">Belum diisi</div><div class="stat-label">Topik Tugas</div></div>
+            <div class="stat-item"><div class="stat-value" id="statYear">2026/2027</div><div class="stat-label">Tahun</div></div>
           </div>
         </div>
       </div>
@@ -338,7 +347,7 @@
       <div class="filter-bar reveal">
         <div class="search-box">
           <span class="search-ico">🔍</span>
-          <input type="text" id="memberSearch" placeholder="Cari nama anggota...">
+          <input type="text" id="memberSearch" placeholder="Cari nama teman...">
         </div>
         <div class="filter-chips" id="filterChips"></div>
       </div>
@@ -350,8 +359,8 @@
   <section id="tugas">
     <div class="container">
       <div class="section-head reveal">
-        <span class="section-tag">PEMBAGIAN TUGAS</span>
-        <h2>Tugas Kelompok</h2>
+        <span class="section-tag">MISI KELOMPOK</span>
+        <h2>Pembagian Tugas</h2>
       </div>
       <div class="tasks-grid" id="tasksGrid"></div>
     </div>
@@ -384,22 +393,22 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="brand" style="color:white;margin-bottom:0.8rem;"><span class="brand-icon" id="footerLogo">🎓</span><span id="footerBrandText">Kelompok Belajar Kelas 5</span></div>
-          <p id="footerSchool" style="color:#cbd5e1;font-size:0.85rem;">SDN Negeri Situ Udik · Kelas 5</p>
-          <p id="footerYear" style="color:#cbd5e1;font-size:0.85rem;">Tahun Pelajaran 2026/2027</p>
+          <div class="brand" style="color:white;margin-bottom:1rem;"><span class="brand-icon" id="footerLogo" style="background:white;color:var(--primary);">🎓</span><span id="footerBrandText">Kelas 5</span></div>
+          <p id="footerSchool" style="color:#D1D5DB;font-size:0.9rem;">SDN Negeri Situ Udik · Kelas 5</p>
+          <p id="footerYear" style="color:#D1D5DB;font-size:0.9rem;">Tahun Pelajaran 2026/2027</p>
         </div>
         <div>
-          <h4 style="color:var(--accent-gold);margin-bottom:0.8rem;">Navigasi</h4>
+          <h4 style="color:var(--accent-yellow);margin-bottom:1rem;font-family:var(--font-heading);">Navigasi</h4>
           <ul style="list-style:none;">
-            <li><a href="#beranda" style="color:#cbd5e1;font-size:0.85rem;">Beranda</a></li>
-            <li><a href="#anggota" style="color:#cbd5e1;font-size:0.85rem;">Anggota</a></li>
-            <li><a href="#galeri" style="color:#cbd5e1;font-size:0.85rem;">Galeri</a></li>
+            <li><a href="#beranda" style="color:#D1D5DB;font-size:0.9rem;">Beranda</a></li>
+            <li><a href="#anggota" style="color:#D1D5DB;font-size:0.9rem;">Anggota</a></li>
+            <li><a href="#galeri" style="color:#D1D5DB;font-size:0.9rem;">Galeri</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Kelompok Belajar Kelas 5 · SDN Negeri Situ Udik</p>
-        <p style="color:var(--accent-gold);font-style:italic;">"Perbedaan membuat kita unik, kerja sama membuat kita kuat!"</p>
+        <p style="color:var(--accent-yellow);font-style:italic;font-weight:600;margin-top:0.5rem;">"Perbedaan membuat kita unik, kerja sama membuat kita kuat!"</p>
       </div>
     </div>
   </footer>
@@ -419,32 +428,25 @@
 
   <!-- Modal Galeri -->
   <div class="modal-overlay" id="galleryModalOverlay">
-    <div class="modal" style="max-width:600px;padding:1rem;">
-      <button class="modal-close" id="galleryModalClose">✕</button>
-      <div id="galleryModalContent" style="border-radius:18px;overflow:hidden;display:grid;place-items:center;min-height:300px;background:#dbeafe;"></div>
+    <div class="modal" style="max-width:600px;padding:1rem;background:transparent;box-shadow:none;">
+      <button class="modal-close" id="galleryModalClose" style="top:-15px;right:-15px;">✕</button>
+      <div id="galleryModalContent" style="border-radius:24px;overflow:hidden;display:grid;place-items:center;min-height:300px;background:#F3F4F6;"></div>
     </div>
   </div>
 
   <script>
-    // === FUNGSI LOAD DATA DARI LOCALSTORAGE ===
-    // Data default akan digunakan jika admin belum pernah menyimpan data
+    // Data default
     const defaultData = {
-      schoolName: 'SDN Negeri Situ Udik',
-      className: 'Kelas 5',
-      year: '2026/2027',
-      groupName: 'Kelompok Belajar Kelas 5',
-      logo: '🎓',
-      description: 'Kami adalah kelompok belajar yang terdiri dari 7 siswa-siswi kelas 5 SDN Negeri Situ Udik. Kami belajar bersama, saling membantu, dan selalu kompak dalam mengerjakan tugas sekolah.',
-      subject: 'Belum diisi',
-      teacher: 'Belum diisi',
+      schoolName: 'SDN Negeri Situ Udik', className: 'Kelas 5', year: '2026/2027', groupName: 'Kelompok Belajar Kelas 5', logo: '🎓', teacher: 'Belum diisi', subject: 'Belum diisi',
+      description: 'Kami adalah kelompok belajar yang terdiri dari 7 siswa-siswi kelas 5 SDN Negeri Situ Udik. Kami belajar bersama, saling membantu, dan selalu kompak.',
       members: [
-        { id: 1, name: 'Nama Siswa 1', className: 'Kelas 5', role: 'Ketua Kelompok', photo: '', responsibilities: 'Memimpin diskusi kelompok.', interests: 'Membaca', description: 'Siswa yang ramah dan bertanggung jawab.' },
-        { id: 2, name: 'Nama Siswa 2', className: 'Kelas 5', role: 'Wakil Ketua', photo: '', responsibilities: 'Membantu ketua.', interests: 'Menggambar', description: 'Kreatif dan penuh ide.' },
-        { id: 3, name: 'Nama Siswa 3', className: 'Kelas 5', role: 'Sekretaris', photo: '', responsibilities: 'Mencatat hasil diskusi.', interests: 'Menulis', description: 'Teliti dan rapi.' },
-        { id: 4, name: 'Nama Siswa 4', className: 'Kelas 5', role: 'Penanggung Jawab Materi', photo: '', responsibilities: 'Mencari bahan pelajaran.', interests: 'Sains', description: 'Suka mencari tahu hal baru.' },
-        { id: 5, name: 'Nama Siswa 5', className: 'Kelas 5', role: 'Penanggung Jawab Ilustrasi', photo: '', responsibilities: 'Membuat ilustrasi.', interests: 'Mewarnai', description: 'Punya imajinasi tinggi.' },
-        { id: 6, name: 'Nama Siswa 6', className: 'Kelas 5', role: 'Penanggung Jawab Presentasi', photo: '', responsibilities: 'Menyusun materi presentasi.', interests: 'Berbicara', description: 'Percaya diri.' },
-        { id: 7, name: 'Nama Siswa 7', className: 'Kelas 5', role: 'Penanggung Jawab Dokumentasi', photo: '', responsibilities: 'Mendokumentasikan kegiatan.', interests: 'Fotografi', description: 'Senang mengabadikan momen.' }
+        { id: 1, name: 'Joyce', className: 'Kelas 5', role: 'Ketua Kelompok', photo: '🎀', responsibilities: 'Memimpin diskusi.', interests: 'Membaca', description: 'Ramah dan bertanggung jawab.' },
+        { id: 2, name: 'Alex', className: 'Kelas 5', role: 'Wakil Ketua', photo: '🧢', responsibilities: 'Membantu ketua.', interests: 'Menggambar', description: 'Kreatif.' },
+        { id: 3, name: 'Maya', className: 'Kelas 5', role: 'Sekretaris', photo: '👩', responsibilities: 'Mencatat.', interests: 'Menulis', description: 'Teliti.' },
+        { id: 4, name: 'Leo', className: 'Kelas 5', role: 'Penanggung Jawab Materi', photo: '🎧', responsibilities: 'Materi.', interests: 'Sains', description: 'Suka belajar.' },
+        { id: 5, name: 'Alice', className: 'Kelas 5', role: 'Penanggung Jawab Ilustrasi', photo: '👱‍♀️', responsibilities: 'Desain.', interests: 'Mewarnai', description: 'Imajinatif.' },
+        { id: 6, name: 'Dani', className: 'Kelas 5', role: 'Penanggung Jawab Presentasi', photo: '🧢', responsibilities: 'Presentasi.', interests: 'Berbicara', description: 'Percaya diri.' },
+        { id: 7, name: 'Moana', className: 'Kelas 5', role: 'Penanggung Jawab Dokumentasi', photo: '👧', responsibilities: 'Dokumentasi.', interests: 'Fotografi', description: 'Suka foto.' }
       ],
       tasks: [
         { id: 1, title: 'Menentukan Topik Proyek', owner: 'Ketua Kelompok', desc: 'Menentukan tema proyek.', status: 'selesai', progress: 100 },
@@ -454,46 +456,54 @@
         { emoji: '📚', caption: 'Belajar bersama', image: '' },
         { emoji: '💬', caption: 'Diskusi kelompok', image: '' }
       ],
-      project: {
-        title: 'Proyek Kelompok',
-        subject: 'Belum diisi',
-        desc: 'Deskripsi proyek belum diisi.',
-        date: 'Belum diisi'
-      }
+      project: { title: 'Proyek Kelompok', subject: 'Belum diisi', desc: 'Deskripsi proyek belum diisi.', date: 'Belum diisi' }
     };
 
     let appData = JSON.parse(localStorage.getItem('kelas5_data')) || defaultData;
 
-    // === FUNGSI UTILITAS ===
     const $ = (sel) => document.querySelector(sel);
-    const $$ = (sel) => [...document.querySelectorAll(sel)];
     const escapeHTML = (str) => { const d = document.createElement('div'); d.textContent = str || ''; return d.innerHTML; };
 
-    // === RENDER HEADER & PROFIL ===
+    // Render Avatar Grid di Hero (Playground)
+    function renderAvatars() {
+      const grid = $('#avatarGrid');
+      grid.innerHTML = '';
+      // Tampilkan maksimal 6 atau 9 avatar
+      appData.members.slice(0, 9).forEach(m => {
+        const item = document.createElement('div');
+        item.className = 'avatar-item';
+        const photoEl = m.photo && m.photo.startsWith('http') 
+            ? `<img src="${escapeHTML(m.photo)}" class="avatar-img" alt="${escapeHTML(m.name)}">` 
+            : `<div class="avatar-img">${m.photo || '👤'}</div>`;
+        
+        item.innerHTML = `
+          <span>${escapeHTML(m.name.split(' ')[0])}</span>
+          ${photoEl}
+        `;
+        item.onclick = () => openMemberModal(m.id);
+        grid.appendChild(item);
+      });
+    }
+
     function renderHeader() {
       $('#navLogo').textContent = appData.logo;
       $('#navBrandText').textContent = appData.groupName;
       $('#footerLogo').textContent = appData.logo;
       $('#footerBrandText').textContent = appData.groupName;
-      $('#heroSchoolBadge').textContent = `${appData.schoolName} · ${appData.className}`;
-      $('#heroSchoolMeta').textContent = appData.schoolName;
-      $('#heroClassMeta').textContent = appData.className;
-      $('#heroCount').textContent = `${appData.members.length} Siswa`;
       $('#footerSchool').textContent = `${appData.schoolName} · ${appData.className}`;
       $('#footerYear').textContent = `Tahun Pelajaran ${appData.year}`;
+      $('#heroTitle').textContent = `Selamat Datang di ${appData.groupName}!`;
+      $('#heroSub').textContent = `${appData.schoolName}. Tempatnya belajar, bermain, dan tumbuh bersama!`;
     }
 
     function renderProfile() {
       $('#profileName').textContent = appData.groupName;
       $('#profileDesc').textContent = appData.description;
       $('#statSchool').textContent = appData.schoolName;
-      $('#statClass').textContent = appData.className;
       $('#statCount').textContent = appData.members.length;
       $('#statYear').textContent = appData.year;
-      $('#statSubject').textContent = appData.subject;
     }
 
-    // === RENDER ANGGOTA ===
     let currentFilter = 'all';
     let currentSearch = '';
 
@@ -528,7 +538,9 @@
         const card = document.createElement('div');
         card.className = 'member-card';
         card.style.animationDelay = `${i * 0.06}s`;
-        const photoEl = m.photo ? `<img src="${escapeHTML(m.photo)}" alt="${escapeHTML(m.name)}" onerror="this.parentElement.innerHTML='👤'">` : '👤';
+        const photoEl = m.photo && m.photo.startsWith('http') 
+            ? `<img src="${escapeHTML(m.photo)}" alt="${escapeHTML(m.name)}" onerror="this.parentElement.innerHTML='👤'">` 
+            : m.photo || '👤';
         
         card.innerHTML = `
           <div class="member-photo">
@@ -538,9 +550,8 @@
           <div class="member-body">
             <div class="member-name">${escapeHTML(m.name)}</div>
             <span class="member-role">${escapeHTML(m.role)}</span>
-            <div class="member-class">${escapeHTML(m.className)}</div>
             <p class="member-desc">${escapeHTML(m.description)}</p>
-            <button class="btn btn-primary btn-sm member-btn" data-id="${m.id}">Lihat Profil</button>
+            <button class="btn btn-primary member-btn" data-id="${m.id}">Lihat Profil</button>
           </div>
         `;
         card.querySelector('.member-btn').onclick = () => openMemberModal(m.id);
@@ -550,11 +561,12 @@
 
     $('#memberSearch').oninput = (e) => { currentSearch = e.target.value; renderMembers(); };
 
-    // === MODAL PROFIL ===
     function openMemberModal(id) {
       const m = appData.members.find(x => x.id === id);
       if (!m) return;
-      const photoEl = m.photo ? `<img src="${escapeHTML(m.photo)}" alt="${escapeHTML(m.name)}" onerror="this.parentElement.innerHTML='👤'">` : '👤';
+      const photoEl = m.photo && m.photo.startsWith('http') 
+          ? `<img src="${escapeHTML(m.photo)}" alt="${escapeHTML(m.name)}">` 
+          : m.photo || '👤';
       $('#modalPhoto').innerHTML = photoEl;
       $('#modalTitle').textContent = m.name;
       $('#modalRole').textContent = m.role;
@@ -570,12 +582,11 @@
     $('#modalClose').onclick = () => { $('#modalOverlay').classList.remove('open'); document.body.style.overflow = ''; };
     $('#modalOverlay').onclick = (e) => { if (e.target === e.currentTarget) $('#modalClose').click(); };
 
-    // === RENDER TUGAS ===
     function renderTasks() {
       const grid = $('#tasksGrid');
       grid.innerHTML = '';
       appData.tasks.forEach(t => {
-        const statusClass = t.status === 'selesai' ? 'status-selesai' : t.status === 'proses' ? 'status-proses' : 'status-belum';
+        const statusClass = t.status === 'selesai' ? 'status-selesai' : t.status === 'proses' ? 'status-proses' : '';
         const card = document.createElement('div');
         card.className = 'task-card';
         card.innerHTML = `
@@ -584,14 +595,13 @@
             <span class="task-status ${statusClass}">${escapeHTML(t.status.toUpperCase())}</span>
           </div>
           <div class="task-owner">👤 ${escapeHTML(t.owner)}</div>
-          <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">${escapeHTML(t.desc)}</p>
+          <p style="font-size:0.9rem;color:var(--text-muted);margin-top:0.5rem;">${escapeHTML(t.desc)}</p>
           <div class="task-progress"><div class="task-progress-bar" style="width:${t.progress}%"></div></div>
         `;
         grid.appendChild(card);
       });
     }
 
-    // === RENDER GALERI ===
     function renderGallery() {
       const grid = $('#galleryGrid');
       grid.innerHTML = '';
@@ -611,7 +621,6 @@
     $('#galleryModalClose').onclick = () => { $('#galleryModalOverlay').classList.remove('open'); document.body.style.overflow = ''; };
     $('#galleryModalOverlay').onclick = (e) => { if (e.target === e.currentTarget) $('#galleryModalClose').click(); };
 
-    // === RENDER PROYEK ===
     function renderProject() {
       const container = $('#projectContainer');
       container.innerHTML = `
@@ -619,17 +628,17 @@
           <div class="project-visual">🎨</div>
           <div class="project-info">
             <span class="section-tag">${escapeHTML(appData.project.subject)}</span>
-            <h3>${escapeHTML(appData.project.title)}</h3>
-            <p>${escapeHTML(appData.project.desc)}</p>
-            <div style="margin-top:1rem;font-size:0.85rem;color:var(--text-muted);">📅 Tanggal: ${escapeHTML(appData.project.date)}</div>
+            <h3 style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:0.5rem;">${escapeHTML(appData.project.title)}</h3>
+            <p style="color:var(--text-muted);margin-bottom:1rem;">${escapeHTML(appData.project.desc)}</p>
+            <div style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">📅 Tanggal: ${escapeHTML(appData.project.date)}</div>
           </div>
         </div>
       `;
     }
 
-    // === INISIALISASI ===
     function init() {
       renderHeader();
+      renderAvatars();
       renderProfile();
       renderFilterChips();
       renderMembers();
@@ -637,25 +646,22 @@
       renderGallery();
       renderProject();
 
-      // Hamburger
       $('#hamburger').onclick = () => {
         $('#navLinks').classList.toggle('open');
         $('#hamburger').classList.toggle('active');
       };
-      $$('.nav-links a').forEach(a => a.onclick = () => {
+      document.querySelectorAll('.nav-links a').forEach(a => a.onclick = () => {
         $('#navLinks').classList.remove('open');
         $('#hamburger').classList.remove('active');
       });
 
-      // Back to top
       window.onscroll = () => $('#backToTop').classList.toggle('show', window.scrollY > 400);
       $('#backToTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Reveal animation
       const observer = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
       }, { threshold: 0.1 });
-      $$('.reveal').forEach(el => observer.observe(el));
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }
 
     init();
