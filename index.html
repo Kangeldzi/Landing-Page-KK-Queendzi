@@ -820,71 +820,90 @@
     }, { passive: true });
     backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" }));
 
-    // --- LOGIKA PENGAMBILAN DATA (CLOUD-FIRST) ---
+        // --- LOGIKA PENGAMBILAN DATA (CLOUD-FIRST DENGAN TIMEOUT) ---
     async function initData() {
       const overlay = $("#loadingOverlay");
       
-      // Jika URL belum diisi, langsung pakai LocalStorage/Default
-      if (GAS_URL.includes("https://script.google.com/macros/s/AKfycbxszLQXt6-6b8BOdcQ9XVm2Rq-wir0lghe2DKXuTRBR0Ho-Qtkyz5u29O09qS5y333l/exec")) {
+      // Pengaman: Paksa hilangkan loading setelah 5 detik jika GAS lambat/macet
+      const safetyTimeout = setTimeout(() => {
+        if (overlay.style.display !== 'none') {
+          console.warn("Google Sheets lambat merespons, menggunakan data lokal.");
+          const local = localStorage.getItem('kelas5_data');
+          if (local) appData = JSON.parse(local);
+          finishLoading();
+        }
+      }, 5000);
+
+      if (GAS_URL.includes("MASUKKAN_URL")) {
         console.warn("URL Google Sheets belum diisi. Menggunakan data lokal.");
         const local = localStorage.getItem('kelas5_data');
         if (local) appData = JSON.parse(local);
+        clearTimeout(safetyTimeout);
         finishLoading();
         return;
       }
 
       try {
-        // Tembak API Google Sheets
         const response = await fetch(GAS_URL);
+        
+        // Jika respons tidak OK (misal 404 / error dari GAS)
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
         const cloudData = await response.json();
         
         if (cloudData && cloudData.schoolName) {
-          // Jika data dari cloud valid, timpa appData
           appData = cloudData;
-          // Simpan salinan ke LocalStorage sebagai cadangan offline
           localStorage.setItem('kelas5_data', JSON.stringify(appData));
           console.log("Data berhasil dimuat dari Google Sheets.");
         } else {
-          throw new Error("Format data cloud tidak valid");
+          throw new Error("Format data cloud tidak valid atau Sheets kosong");
         }
       } catch (error) {
         console.error("Gagal mengambil data dari Google Sheets:", error);
-        // Fallback 1: Coba ambil dari LocalStorage
         const local = localStorage.getItem('kelas5_data');
         if (local) {
           appData = JSON.parse(local);
           console.log("Menggunakan data cadangan LocalStorage.");
-        } else {
-          console.log("Menggunakan data default (fallback terakhir).");
         }
       } finally {
+        clearTimeout(safetyTimeout); // Hentikan timer pengaman
         finishLoading();
       }
     }
 
     function finishLoading() {
-      renderAll();
-      
-      // Sembunyikan overlay loading
       const overlay = $("#loadingOverlay");
-      overlay.style.opacity = '0';
-      setTimeout(() => {
-        overlay.style.display = 'none';
-      }, 400);
+      
+      // Cegah fungsi ini berjalan dua kali
+      if (overlay.style.display === 'none') return;
 
-      // Animasi Reveal
-      if ("IntersectionObserver" in window && !reducedMotion) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("revealed");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12 });
-        document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
-      } else {
-        document.querySelectorAll(".reveal").forEach(element => element.classList.add("revealed"));
+      try {
+        renderAll();
+        
+        // Sembunyikan overlay loading
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 400);
+
+        // Animasi Reveal
+        if ("IntersectionObserver" in window && !reducedMotion) {
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12 });
+          document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+        } else {
+          document.querySelectorAll(".reveal").forEach(element => element.classList.add("revealed"));
+        }
+      } catch (renderError) {
+        console.error("Gagal merender tampilan:", renderError);
+        // Jika render gagal parah, setidaknya hilangkan loading
+        overlay.style.display = 'none';
       }
     }
 
