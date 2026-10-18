@@ -76,7 +76,7 @@
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
     .hero-meta { display: flex; align-items: center; gap: 13px; margin-top: 27px; color: var(--muted); font-size: .86rem; }
     .mini-avatars { display: flex; padding-left: 5px; }
-    .mini-avatars span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; margin-left: -6px; display: grid; place-items: center; font-size: .8rem; background: #dcecff; }
+    .mini-avatars span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; margin-left: -6px; display: grid; place-items: center; font-size: .8rem; background: #dcecff; overflow: hidden; }
     .hero-art {
       min-height: 395px; position: relative; display: grid; place-items: center;
       border-radius: 35px; background: linear-gradient(140deg, #dff3ff 0%, #edf1ff 60%, #fff5d7 100%);
@@ -91,7 +91,8 @@
     .art-pill { font-size: .7rem; background: #e5f8ed; color: #167448; padding: 5px 9px; border-radius: 999px; font-weight: 800; }
     .art-students { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
     .student-bubble { display: grid; place-items: center; gap: 5px; font-size: .65rem; color: #596981; font-weight: 700; }
-    .student-bubble .emoji { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 17px; font-size: 1.8rem; background: var(--bubble, #e4f0ff); }
+    .student-bubble .emoji { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 17px; font-size: 1.8rem; background: var(--bubble, #e4f0ff); overflow: hidden; }
+    .student-bubble .emoji img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
     .art-footer { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: .76rem; }
     .float-note { position: absolute; padding: 12px 15px; border-radius: 16px; background: white; box-shadow: var(--shadow); font-size: .85rem; font-weight: 800; }
     .float-note.one { left: 12px; top: 55px; transform: rotate(-6deg); }
@@ -120,7 +121,8 @@
     .member-card { background: white; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 6px 20px rgba(28,65,125,.04); transition: transform .25s, box-shadow .25s; }
     .member-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
     .member-cover { height: 92px; background: var(--cover, linear-gradient(135deg,#dcecff,#edf6ff)); position: relative; }
-    .member-avatar { position: absolute; left: 20px; bottom: -37px; width: 76px; height: 76px; border: 4px solid white; border-radius: 23px; display: grid; place-items: center; font-size: 2.25rem; background: var(--avatar-bg, #e2efff); box-shadow: 0 5px 15px rgba(30,64,120,.1); }
+    .member-avatar { position: absolute; left: 20px; bottom: -37px; width: 76px; height: 76px; border: 4px solid white; border-radius: 23px; display: grid; place-items: center; font-size: 2.25rem; background: var(--avatar-bg, #e2efff); box-shadow: 0 5px 15px rgba(30,64,120,.1); overflow: hidden; }
+    .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .member-number { position: absolute; right: 15px; top: 13px; border-radius: 999px; background: rgba(255,255,255,.83); color: #355273; font-size: .7rem; font-weight: 850; padding: 5px 9px; }
     .member-body { padding: 48px 18px 18px; }
     .member-body h3 { margin: 0; font-size: 1.02rem; }
@@ -168,6 +170,7 @@
     .gallery-tile:hover::before { opacity: .8; }
     .gallery-tile:first-child { grid-row: span 2; }
     .gallery-emoji { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); font-size: clamp(3rem, 7vw, 5.4rem); filter: drop-shadow(0 8px 8px rgba(0,0,0,.12)); }
+    .gallery-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
     .gallery-tile strong { display: block; font-size: 1rem; }
     .gallery-tile small { display: block; opacity: .85; font-size: .75rem; }
     .gallery-disclaimer { color: var(--muted); font-size: .8rem; margin: 14px 0 0; }
@@ -190,7 +193,8 @@
     @keyframes modal-in { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
     .modal-banner { height: 105px; background: linear-gradient(135deg,#dcecff,#fff1c9); position: relative; }
     .modal-close { position: absolute; top: 13px; right: 13px; width: 37px; height: 37px; border: 0; border-radius: 12px; background: rgba(255,255,255,.9); color: var(--ink); font-size: 1.25rem; }
-    .modal-avatar { width: 88px; height: 88px; border: 5px solid white; border-radius: 25px; position: absolute; left: 24px; bottom: -40px; display: grid; place-items: center; font-size: 2.7rem; background: #e2efff; }
+    .modal-avatar { width: 88px; height: 88px; border: 5px solid white; border-radius: 25px; position: absolute; left: 24px; bottom: -40px; display: grid; place-items: center; font-size: 2.7rem; background: #e2efff; overflow: hidden; }
+    .modal-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .modal-content { padding: 52px 25px 25px; }
     .modal-content h2 { font-size: 1.65rem; margin: 0 0 4px; }
     .modal-role { color: var(--blue); font-size: .88rem; font-weight: 800; }
@@ -266,25 +270,7 @@
       .member-description { min-height: auto; }
       .hero-actions .btn { width: 100%; }
     }
-    /* FIX UNTUK GAMBAR DAN LINK YANG PANJANG */
-    .student-bubble .emoji img, 
-    .member-avatar img, 
-    .gallery-tile img, 
-    .mini-avatars span img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: inherit;
-    }
-    
-    /* Mencegah teks link merusak layout jika gambar gagal dimuat */
-    .student-bubble .emoji, 
-    .member-avatar, 
-    .mini-avatars span {
-      overflow: hidden;
-      word-break: break-all;
-      font-size: 0.5rem; /* Jika gambar gagal, teks link akan kecil */
-    }
+
     /* LOADING OVERLAY */
     .loading-overlay { position: fixed; inset: 0; background: var(--page); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.4s ease; }
     .loading-spinner { width: 50px; height: 50px; border: 5px solid #dcecff; border-top: 5px solid var(--blue); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
@@ -487,33 +473,28 @@
   <script>
     "use strict";
 
-    // ==============================================================
-    // 1. MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
-    // ==============================================================
     const GAS_URL = "https://script.google.com/macros/s/AKfycbxszLQXt6-6b8BOdcQ9XVm2Rq-wir0lghe2DKXuTRBR0Ho-Qtkyz5u29O09qS5y333l/exec";
 
-    // ==============================================================
-    // 2. DATA CADANGAN (JIKA GOOGLE SHEETS GAGAL DIAKSES)
-    // ==============================================================
+    // Data cadangan jika Cloud & LocalStorage kosong atau error
     const defaultData = {
       schoolName: 'SDN Negeri Situ Udik', className: 'Kelas 5C', year: '2026/2027', groupName: 'Kelompok Belajar Kelas 5C', logo: '🎓', teacher: 'Belum diisi', subject: 'Belum diisi',
       description: 'Kami adalah kelompok belajar yang terdiri dari 6 siswa-siswi kelas 5C SDN Negeri Situ Udik. Kami belajar bersama, saling membantu, dan selalu kompak.',
       members: [
-        { id: 1, name: '[Nama Ketua]', className: 'Kelas 5C', role: 'Ketua Kelompok', photo: '👦🏻', responsibilities: 'Mengatur pembagian tugas dan membantu menjaga kerja sama kelompok.', interests: 'Belum diisi', description: 'Membantu kelompok tetap teratur dan mengajak semua anggota berpartisipasi.' },
-        { id: 2, name: '[Nama Sekretaris]', className: 'Kelas 5C', role: 'Sekretaris', photo: '👧🏽', responsibilities: 'Mencatat hasil diskusi, ide, dan kebutuhan tugas kelompok.', interests: 'Belum diisi', description: 'Membantu mencatat hal penting agar hasil diskusi mudah diingat.' },
-        { id: 3, name: '[Nama Bendahara]', className: 'Kelas 5C', role: 'Bendahara', photo: '👧🏻', responsibilities: 'Mengatur keuangan kelompok dan memastikan kebutuhan tercukupi.', interests: 'Belum diisi', description: 'Membantu mengelola kebutuhan alat dan bahan kelompok.' },
-        { id: 4, name: '[Nama Anggota 1]', className: 'Kelas 5C', role: 'Anggota', photo: '👦🏽', responsibilities: 'Membantu ketua dan anggota lain dalam menyelesaikan tugas.', interests: 'Belum diisi', description: 'Selalu siap membantu teman dan aktif dalam diskusi.' },
-        { id: 5, name: '[Nama Anggota 2]', className: 'Kelas 5C', role: 'Anggota', photo: '👧🏾', responsibilities: 'Membantu mencari ide dan mengerjakan proyek kelompok.', interests: 'Belum diisi', description: 'Kreatif dan suka memberikan ide-ide baru.' },
-        { id: 6, name: '[Nama Anggota 3]', className: 'Kelas 5C', role: 'Anggota', photo: '👦🏾', responsibilities: 'Membantu menyelesaikan tugas kelompok sesuai kesepakatan.', interests: 'Belum diisi', description: 'Bertanggung jawab dan suka bekerja sama.' }
+        { id: 1, name: 'Budi', className: 'Kelas 5C', role: 'Ketua Kelompok', photo: '👦🏻', responsibilities: 'Mengatur pembagian tugas.', interests: 'Sepak bola', description: 'Ramah dan bertanggung jawab.' },
+        { id: 2, name: 'Siti', className: 'Kelas 5C', role: 'Sekretaris', photo: '👧🏽', responsibilities: 'Mencatat hasil diskusi.', interests: 'Menulis', description: 'Teliti dan rajin.' },
+        { id: 3, name: 'Dewi', className: 'Kelas 5C', role: 'Bendahara', photo: '👧🏻', responsibilities: 'Mengatur keuangan kelompok.', interests: 'Matematika', description: 'Jujur dan hemat.' },
+        { id: 4, name: 'Andi', className: 'Kelas 5C', role: 'Anggota', photo: '👦🏽', responsibilities: 'Membantu ketua.', interests: 'Menggambar', description: 'Kreatif dan ceria.' },
+        { id: 5, name: 'Rina', className: 'Kelas 5C', role: 'Anggota', photo: '👧🏾', responsibilities: 'Membantu mencari ide.', interests: 'Membaca', description: 'Suka membantu teman.' },
+        { id: 6, name: 'Joko', className: 'Kelas 5C', role: 'Anggota', photo: '👦🏾', responsibilities: 'Membantu menyelesaikan tugas.', interests: 'Olahraga', description: 'Semangat dan aktif.' }
       ],
       tasks: [
-        { id: 1, title: 'Menentukan tema dan tujuan proyek', owner: 'Ketua Kelompok', desc: 'Sepakati topik, tujuan, dan hasil yang ingin dibuat.', status: 'belum', progress: 0 },
-        { id: 2, title: 'Mengumpulkan bahan dan referensi', owner: 'Anggota', desc: 'Cari informasi dari buku pelajaran.', status: 'belum', progress: 0 },
+        { id: 1, title: 'Menentukan tema dan tujuan proyek', owner: 'Ketua Kelompok', desc: 'Sepakati topik, tujuan, dan hasil.', status: 'belum', progress: 0 },
+        { id: 2, title: 'Mengumpulkan bahan dan referensi', owner: 'Anggota', desc: 'Cari informasi dari buku.', status: 'belum', progress: 0 },
         { id: 3, title: 'Mencatat hasil diskusi', owner: 'Sekretaris', desc: 'Tuliskan ide dan keputusan.', status: 'belum', progress: 0 },
         { id: 4, title: 'Membuat desain atau ilustrasi', owner: 'Ketua Kelompok', desc: 'Susun gambar dan tampilan.', status: 'belum', progress: 0 },
-        { id: 5, title: 'Menyusun hasil akhir', owner: 'Ketua Kelompok', desc: 'Gabungkan materi dan periksa kembali.', status: 'belum', progress: 0 },
-        { id: 6, title: 'Berlatih presentasi', owner: 'Ketua Kelompok', desc: 'Bagi bagian penjelasan dan latihan.', status: 'belum', progress: 0 },
-        { id: 7, title: 'Menyiapkan dokumentasi', owner: 'Ketua Kelompok', desc: 'Rapikan hasil akhir dan dokumentasi.', status: 'belum', progress: 0 }
+        { id: 5, title: 'Menyusun hasil akhir', owner: 'Ketua Kelompok', desc: 'Gabungkan materi dan periksa.', status: 'belum', progress: 0 },
+        { id: 6, title: 'Berlatih presentasi', owner: 'Ketua Kelompok', desc: 'Bagi bagian penjelasan.', status: 'belum', progress: 0 },
+        { id: 7, title: 'Menyiapkan dokumentasi', owner: 'Ketua Kelompok', desc: 'Rapikan hasil akhir.', status: 'belum', progress: 0 }
       ],
       gallery: [
         { emoji: '📚', caption: 'Belajar bersama', image: '' },
@@ -522,7 +503,7 @@
       project: { title: 'Proyek Kelompok', subject: 'Belum diisi', desc: 'Deskripsi proyek.', date: 'Belum diisi' }
     };
 
-    let appData = defaultData; // Akan ditimpa oleh data dari Sheets atau LocalStorage
+    let appData = JSON.parse(JSON.stringify(defaultData));
 
     const $ = (selector, root = document) => root.querySelector(selector);
     const memberGrid = $("#memberGrid");
@@ -539,85 +520,98 @@
       })[char]);
     }
 
-    // --- FUNGSI RENDER UTAMA ---
-    function renderAll() {
-      // Logo & Teks Header
-      $("#mainLogo").textContent = appData.logo || "🎓";
-      $("#footerLogo").textContent = appData.logo || "🎓";
-      $("#topYear").textContent = appData.year || "2026/2027";
-      $("#heroDesc").textContent = appData.description;
-      $("#heroMemberCount").textContent = `${appData.members.length} siswa-siswi`;
-      $("#statClass").textContent = appData.className;
-      $("#statSchool").textContent = appData.schoolName;
-      $("#memberCountBadge").textContent = `⭐ ${appData.members.length} Anggota`;
-      $("#footerCTA").textContent = `Kenali ${appData.members.length} Anggota ↗`;
-
-      renderMiniAvatars();
-      renderHeroAvatarGrid();
-      renderRoleFilter();
-      renderMembers();
-      renderTasks();
-      renderGallery();
-      updateOrgTree();
-
-      $("#memberCount").textContent = appData.members.length;
-      $("#currentYear").textContent = new Date().getFullYear();
+    // --- FUNGSI BANTU RENDER GAMBAR / EMOJI ---
+    function renderPhotoContent(photo, altText) {
+      if (!photo) return '👤';
+      if (photo.startsWith('http')) {
+        return `<img src="${escapeHTML(photo)}" alt="${escapeHTML(altText || 'Foto')}" onerror="this.outerHTML='👤'">`;
+      }
+      return photo; // Berupa emoji
     }
 
-        function renderMiniAvatars() {
+    // --- FUNGSI RENDER UTAMA ---
+    function renderAll() {
+      try {
+        $("#mainLogo").textContent = appData.logo || "🎓";
+        $("#footerLogo").textContent = appData.logo || "🎓";
+        $("#topYear").textContent = appData.year || "2026/2027";
+        $("#heroDesc").textContent = appData.description || "";
+        $("#heroMemberCount").textContent = `${appData.members.length} siswa-siswi`;
+        $("#statClass").textContent = appData.className || "Kelas 5C";
+        $("#statSchool").textContent = appData.schoolName || "SDN Negeri Situ Udik";
+        $("#memberCountBadge").textContent = `⭐ ${appData.members.length} Anggota`;
+        $("#footerCTA").textContent = `Kenali ${appData.members.length} Anggota ↗`;
+
+        renderMiniAvatars();
+        renderHeroAvatarGrid();
+        renderRoleFilter();
+        renderMembers();
+        renderTasks();
+        renderGallery();
+        updateOrgTree();
+
+        $("#memberCount").textContent = appData.members.length;
+        $("#currentYear").textContent = new Date().getFullYear();
+      } catch (error) {
+        console.error("Error saat render tampilan:", error);
+      }
+    }
+
+    function renderMiniAvatars() {
       const container = $("#miniAvatars");
-      container.innerHTML = appData.members.slice(0, 4).map(m => {
-        const isUrl = m.photo && m.photo.startsWith('http');
-        return `<span>${isUrl ? `<img src="${m.photo}" alt="Foto" onerror="this.outerHTML='👤'">` : (m.photo || '👤')}</span>`;
-      }).join('');
+      const members = appData.members || [];
+      container.innerHTML = members.slice(0, 4).map(m => `<span>${renderPhotoContent(m.photo, m.name)}</span>`).join('');
     }
 
     function renderHeroAvatarGrid() {
       const grid = $("#heroAvatarGrid");
       const colors = ['#e0edff', '#fff0c9', '#dff8eb', '#fce4ef', '#e9e4ff', '#ffe8d8'];
-      grid.innerHTML = appData.members.map((m, i) => {
-        const isUrl = m.photo && m.photo.startsWith('http');
-        const photoContent = isUrl ? `<img src="${m.photo}" alt="Foto" onerror="this.outerHTML='👤'">` : (m.photo || '👤');
-        return `
+      const members = appData.members || [];
+      grid.innerHTML = members.map((m, i) => `
         <div class="student-bubble">
-          <span class="emoji" style="--bubble:${colors[i % colors.length]}">${photoContent}</span>
-          <span>${escapeHTML(m.name.split(' ')[0])}</span>
+          <span class="emoji" style="--bubble:${colors[i % colors.length]}">${renderPhotoContent(m.photo, m.name)}</span>
+          <span>${escapeHTML((m.name || 'Siswa').split(' ')[0])}</span>
         </div>
-      `}).join('');
+      `).join('');
     }
 
-    // Di dalam fungsi renderMembers(), ganti bagian pembuatan member-avatar:
-    // Cari baris: <div class="member-avatar" ...>${member.photo || '👤'}</div>
-    // Ganti menjadi:
-
     function renderMembers() {
-      // ... (kode pencarian dan filter tetap sama) ...
+      const search = $("#memberSearch").value.trim().toLocaleLowerCase("id");
+      const role = $("#roleFilter").value;
+      const members = appData.members || [];
       
-      memberGrid.innerHTML = filtered.map(member => {
-        const isUrl = member.photo && member.photo.startsWith('http');
-        const photoContent = isUrl ? `<img src="${member.photo}" alt="Foto" onerror="this.outerHTML='👤'">` : (member.photo || '👤');
-        
-        return `
+      const filtered = members.filter(member =>
+        (member.name || "").toLocaleLowerCase("id").includes(search) &&
+        (!role || member.role === role)
+      );
+
+      if (!filtered.length) {
+        memberGrid.innerHTML = '<div class="empty-state"><div style="font-size:2rem">🔎</div><strong>Anggota tidak ditemukan</strong><br><span>Coba kata kunci atau filter yang berbeda.</span></div>';
+        return;
+      }
+
+      memberGrid.innerHTML = filtered.map(member => `
         <article class="member-card">
           <div class="member-cover" style="--cover:linear-gradient(135deg,#dcecff,#edf6ff)">
-            <span class="member-number">ANGGOTA ${String(member.id).padStart(2, "0")}</span>
-            <div class="member-avatar" style="--avatar-bg:#e0edff" aria-hidden="true">${photoContent}</div>
+            <span class="member-number">ANGGOTA ${String(member.id || 0).padStart(2, "0")}</span>
+            <div class="member-avatar" style="--avatar-bg:#e0edff" aria-hidden="true">${renderPhotoContent(member.photo, member.name)}</div>
           </div>
           <div class="member-body">
-            <h3>${escapeHTML(member.name)}</h3>
-            <div class="member-class">${escapeHTML(member.className)} · SDN Negeri Situ Udik</div>
-            <span class="role-tag">${escapeHTML(member.role)}</span>
-            <p class="member-description">${escapeHTML(member.description)}</p>
+            <h3>${escapeHTML(member.name || 'Tanpa Nama')}</h3>
+            <div class="member-class">${escapeHTML(member.className || 'Kelas 5C')} · SDN Negeri Situ Udik</div>
+            <span class="role-tag">${escapeHTML(member.role || 'Anggota')}</span>
+            <p class="member-description">${escapeHTML(member.description || '-')}</p>
             <button class="text-button profile-button" type="button" data-member-id="${member.id}">Lihat profil →</button>
           </div>
         </article>
-      `}).join("");
+      `).join("");
     }
 
     function renderRoleFilter() {
       const select = $("#roleFilter");
       select.innerHTML = '<option value="">Semua peran</option>';
-      const roles = [...new Set(appData.members.map(member => member.role))];
+      const members = appData.members || [];
+      const roles = [...new Set(members.map(member => member.role))].filter(Boolean);
       roles.forEach(role => {
         const option = document.createElement("option");
         option.value = role;
@@ -627,17 +621,18 @@
     }
 
     function renderTasks() {
+      const tasks = appData.tasks || [];
       let completed = new Set();
       try {
         const saved = JSON.parse(localStorage.getItem("situUdikGroupTasks") || "[]");
         if (Array.isArray(saved)) completed = new Set(saved.filter(id => Number.isInteger(id)));
       } catch (error) {}
 
-      taskList.innerHTML = appData.tasks.map(task => {
+      taskList.innerHTML = tasks.map(task => {
         const done = completed.has(task.id);
         return `<article class="task-card ${done ? "done" : ""}">
           <input class="task-check" type="checkbox" id="task-${task.id}" data-task-id="${task.id}" ${done ? "checked" : ""} aria-label="Tandai ${escapeHTML(task.title)} selesai">
-          <div class="task-main"><strong>${escapeHTML(task.title)}</strong><p>${escapeHTML(task.desc)}</p><span class="task-owner">👤 ${escapeHTML(task.owner)}</span></div>
+          <div class="task-main"><strong>${escapeHTML(task.title || '-')}</strong><p>${escapeHTML(task.desc || '-')}</p><span class="task-owner">👤 ${escapeHTML(task.owner || '-')}</span></div>
         </article>`;
       }).join("");
       updateTaskProgress();
@@ -651,12 +646,13 @@
     }
 
     function updateTaskProgress() {
+      const tasks = appData.tasks || [];
       const completed = getCompletedTasks();
-      const count = appData.tasks.filter(task => completed.has(task.id)).length;
-      const percent = appData.tasks.length ? Math.round(count / appData.tasks.length * 100) : 0;
-      $("#taskCount").textContent = appData.tasks.length;
+      const count = tasks.filter(task => completed.has(task.id)).length;
+      const percent = tasks.length ? Math.round(count / tasks.length * 100) : 0;
+      $("#taskCount").textContent = tasks.length;
       $("#doneCount").textContent = count;
-      $("#progressText").textContent = `${percent}% (${count}/${appData.tasks.length})`;
+      $("#progressText").textContent = `${percent}% (${count}/${tasks.length})`;
       $("#progressFill").style.width = `${percent}%`;
       $("#progressBar").setAttribute("aria-valuenow", String(percent));
       taskList.querySelectorAll(".task-check").forEach(input => {
@@ -666,6 +662,7 @@
 
     function renderGallery() {
       const grid = $("#galleryGrid");
+      const gallery = appData.gallery || [];
       const colors = [
         "linear-gradient(135deg,#6ab8ff,#3159b9)",
         "linear-gradient(135deg,#ffc96b,#e78255)",
@@ -673,14 +670,14 @@
         "linear-gradient(135deg,#bca8ff,#6955b5)",
         "linear-gradient(135deg,#ff9dbb,#d65e86)"
       ];
-      grid.innerHTML = appData.gallery.map((g, i) => `
-        <button class="gallery-tile" type="button" style="--tile-bg:${colors[i % colors.length]}" data-gallery-title="${escapeHTML(g.caption)}" data-gallery-desc="Dokumentasi: ${escapeHTML(g.caption)}">
-          ${g.image ? `<img src="${escapeHTML(g.image)}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;" alt="${escapeHTML(g.caption)}">` : `<span class="gallery-emoji">${g.emoji || '🖼️'}</span>`}
-          <span><strong>${escapeHTML(g.caption)}</strong><small>Kegiatan kelompok</small></span>
+      
+      grid.innerHTML = gallery.map((g, i) => `
+        <button class="gallery-tile" type="button" style="--tile-bg:${colors[i % colors.length]}" data-gallery-title="${escapeHTML(g.caption || 'Galeri')}" data-gallery-desc="Dokumentasi: ${escapeHTML(g.caption || '-')}">
+          ${g.image ? `<img src="${escapeHTML(g.image)}" onerror="this.style.display='none'" alt="${escapeHTML(g.caption)}">` : `<span class="gallery-emoji">${g.emoji || '🖼️'}</span>`}
+          <span><strong>${escapeHTML(g.caption || 'Kegiatan')}</strong><small>Kegiatan kelompok</small></span>
         </button>
       `).join("");
 
-      // Re-attach event listeners for gallery
       grid.querySelectorAll('.gallery-tile').forEach(button => {
         button.addEventListener("click", () => {
           $("#galleryModalTitle").textContent = button.dataset.galleryTitle;
@@ -692,12 +689,17 @@
 
     function updateOrgTree() {
       const orgTree = $("#orgTree");
+      const members = appData.members || [];
       if (!orgTree) return;
+      if (members.length === 0) {
+        orgTree.innerHTML = '<p style="text-align:center;color:var(--muted);">Data belum tersedia.</p>';
+        return;
+      }
 
-      const ketua = appData.members.find(m => m.role === "Ketua Kelompok") || appData.members[0] || {name:'-'};
-      const sekretaris = appData.members.find(m => m.role === "Sekretaris") || appData.members[1] || {name:'-'};
-      const bendahara = appData.members.find(m => m.role === "Bendahara") || appData.members[2] || {name:'-'};
-      const anggota = appData.members.filter(m => m.role === "Anggota");
+      const ketua = members.find(m => m.role === "Ketua Kelompok") || members[0] || {name:'-'};
+      const sekretaris = members.find(m => m.role === "Sekretaris") || members[1] || {name:'-'};
+      const bendahara = members.find(m => m.role === "Bendahara") || members[2] || {name:'-'};
+      const anggota = members.filter(m => m.role === "Anggota");
 
       orgTree.innerHTML = `
         <div class="org-node primary"><strong>Ketua Kelompok</strong><small>${escapeHTML(ketua.name)}</small></div>
@@ -714,16 +716,17 @@
     }
 
     function showProfile(id, trigger) {
-      const member = appData.members.find(item => item.id === Number(id));
+      const member = (appData.members || []).find(item => item.id === Number(id));
       if (!member) return;
-      $("#modalAvatar").textContent = member.photo || '👤';
+      
+      $("#modalAvatar").innerHTML = renderPhotoContent(member.photo, member.name);
       $("#modalBanner").style.background = "linear-gradient(135deg,#dcecff,#fff1c9)";
-      $("#modalName").textContent = member.name;
-      $("#modalRole").textContent = member.role;
-      $("#modalDescription").textContent = member.description;
-      $("#modalClass").textContent = member.className;
-      $("#modalResponsibilities").textContent = member.responsibilities;
-      $("#modalInterests").textContent = member.interests;
+      $("#modalName").textContent = member.name || '-';
+      $("#modalRole").textContent = member.role || '-';
+      $("#modalDescription").textContent = member.description || '-';
+      $("#modalClass").textContent = member.className || 'Kelas 5C';
+      $("#modalResponsibilities").textContent = member.responsibilities || '-';
+      $("#modalInterests").textContent = member.interests || '-';
       openModal(profileModal, trigger);
     }
 
@@ -742,14 +745,6 @@
         document.body.classList.remove("modal-open");
       }
       if (lastFocusedElement && typeof lastFocusedElement.focus === "function") lastFocusedElement.focus();
-    }
-
-    function showToast(message) {
-      const toast = $("#toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
     }
 
     // --- EVENT LISTENERS ---
@@ -771,9 +766,7 @@
       try {
         localStorage.setItem("situUdikGroupTasks", JSON.stringify([...completed]));
         updateTaskProgress();
-        showToast(input.checked ? "Tugas ditandai selesai ✓" : "Status tugas diperbarui");
       } catch (error) {
-        showToast("Browser tidak dapat menyimpan perubahan.");
         input.checked = !input.checked;
       }
     });
@@ -820,24 +813,25 @@
     }, { passive: true });
     backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" }));
 
-        // --- LOGIKA PENGAMBILAN DATA (CLOUD-FIRST DENGAN TIMEOUT) ---
+    // --- LOGIKA PENGAMBILAN DATA (ANTI-CRASH & TIMEOUT) ---
     async function initData() {
       const overlay = $("#loadingOverlay");
       
-      // Pengaman: Paksa hilangkan loading setelah 5 detik jika GAS lambat/macet
       const safetyTimeout = setTimeout(() => {
         if (overlay.style.display !== 'none') {
-          console.warn("Google Sheets lambat merespons, menggunakan data lokal.");
           const local = localStorage.getItem('kelas5_data');
-          if (local) appData = JSON.parse(local);
+          if (local) {
+            try { appData = JSON.parse(local); } catch(e){}
+          }
           finishLoading();
         }
       }, 5000);
 
       if (GAS_URL.includes("https://script.google.com/macros/s/AKfycbxszLQXt6-6b8BOdcQ9XVm2Rq-wir0lghe2DKXuTRBR0Ho-Qtkyz5u29O09qS5y333l/exec")) {
-        console.warn("URL Google Sheets belum diisi. Menggunakan data lokal.");
         const local = localStorage.getItem('kelas5_data');
-        if (local) appData = JSON.parse(local);
+        if (local) {
+          try { appData = JSON.parse(local); } catch(e){}
+        }
         clearTimeout(safetyTimeout);
         finishLoading();
         return;
@@ -845,69 +839,53 @@
 
       try {
         const response = await fetch(GAS_URL);
-        
-        // Jika respons tidak OK (misal 404 / error dari GAS)
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
         const cloudData = await response.json();
         
         if (cloudData && cloudData.schoolName) {
           appData = cloudData;
           localStorage.setItem('kelas5_data', JSON.stringify(appData));
-          console.log("Data berhasil dimuat dari Google Sheets.");
         } else {
-          throw new Error("Format data cloud tidak valid atau Sheets kosong");
+          throw new Error("Format data cloud tidak valid");
         }
       } catch (error) {
-        console.error("Gagal mengambil data dari Google Sheets:", error);
+        console.error("Gagal memuat dari Cloud:", error);
         const local = localStorage.getItem('kelas5_data');
         if (local) {
-          appData = JSON.parse(local);
-          console.log("Menggunakan data cadangan LocalStorage.");
+          try { appData = JSON.parse(local); } catch(e){}
         }
       } finally {
-        clearTimeout(safetyTimeout); // Hentikan timer pengaman
+        clearTimeout(safetyTimeout);
         finishLoading();
       }
     }
 
     function finishLoading() {
       const overlay = $("#loadingOverlay");
-      
-      // Cegah fungsi ini berjalan dua kali
       if (overlay.style.display === 'none') return;
 
-      try {
-        renderAll();
-        
-        // Sembunyikan overlay loading
-        overlay.style.opacity = '0';
-        setTimeout(() => {
-          overlay.style.display = 'none';
-        }, 400);
-
-        // Animasi Reveal
-        if ("IntersectionObserver" in window && !reducedMotion) {
-          const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("revealed");
-                observer.unobserve(entry.target);
-              }
-            });
-          }, { threshold: 0.12 });
-          document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
-        } else {
-          document.querySelectorAll(".reveal").forEach(element => element.classList.add("revealed"));
-        }
-      } catch (renderError) {
-        console.error("Gagal merender tampilan:", renderError);
-        // Jika render gagal parah, setidaknya hilangkan loading
+      renderAll(); // Panggil render (yang sudah dibungkus try-catch)
+      
+      overlay.style.opacity = '0';
+      setTimeout(() => {
         overlay.style.display = 'none';
+      }, 400);
+
+      if ("IntersectionObserver" in window && !reducedMotion) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+      } else {
+        document.querySelectorAll(".reveal").forEach(element => element.classList.add("revealed"));
       }
     }
 
-    // Jalankan inisialisasi
     initData();
 
   </script>
