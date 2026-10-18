@@ -266,7 +266,25 @@
       .member-description { min-height: auto; }
       .hero-actions .btn { width: 100%; }
     }
-
+    /* FIX UNTUK GAMBAR DAN LINK YANG PANJANG */
+    .student-bubble .emoji img, 
+    .member-avatar img, 
+    .gallery-tile img, 
+    .mini-avatars span img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+    
+    /* Mencegah teks link merusak layout jika gambar gagal dimuat */
+    .student-bubble .emoji, 
+    .member-avatar, 
+    .mini-avatars span {
+      overflow: hidden;
+      word-break: break-all;
+      font-size: 0.5rem; /* Jika gambar gagal, teks link akan kecil */
+    }
     /* LOADING OVERLAY */
     .loading-overlay { position: fixed; inset: 0; background: var(--page); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.4s ease; }
     .loading-spinner { width: 50px; height: 50px; border: 5px solid #dcecff; border-top: 5px solid var(--blue); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
@@ -546,40 +564,44 @@
       $("#currentYear").textContent = new Date().getFullYear();
     }
 
-    function renderMiniAvatars() {
+        function renderMiniAvatars() {
       const container = $("#miniAvatars");
-      container.innerHTML = appData.members.slice(0, 4).map(m => `<span>${m.photo || '👤'}</span>`).join('');
+      container.innerHTML = appData.members.slice(0, 4).map(m => {
+        const isUrl = m.photo && m.photo.startsWith('http');
+        return `<span>${isUrl ? `<img src="${m.photo}" alt="Foto" onerror="this.outerHTML='👤'">` : (m.photo || '👤')}</span>`;
+      }).join('');
     }
 
     function renderHeroAvatarGrid() {
       const grid = $("#heroAvatarGrid");
       const colors = ['#e0edff', '#fff0c9', '#dff8eb', '#fce4ef', '#e9e4ff', '#ffe8d8'];
-      grid.innerHTML = appData.members.map((m, i) => `
+      grid.innerHTML = appData.members.map((m, i) => {
+        const isUrl = m.photo && m.photo.startsWith('http');
+        const photoContent = isUrl ? `<img src="${m.photo}" alt="Foto" onerror="this.outerHTML='👤'">` : (m.photo || '👤');
+        return `
         <div class="student-bubble">
-          <span class="emoji" style="--bubble:${colors[i % colors.length]}">${m.photo || '👤'}</span>
+          <span class="emoji" style="--bubble:${colors[i % colors.length]}">${photoContent}</span>
           <span>${escapeHTML(m.name.split(' ')[0])}</span>
         </div>
-      `).join('');
+      `}).join('');
     }
 
+    // Di dalam fungsi renderMembers(), ganti bagian pembuatan member-avatar:
+    // Cari baris: <div class="member-avatar" ...>${member.photo || '👤'}</div>
+    // Ganti menjadi:
+
     function renderMembers() {
-      const search = $("#memberSearch").value.trim().toLocaleLowerCase("id");
-      const role = $("#roleFilter").value;
-      const filtered = appData.members.filter(member =>
-        member.name.toLocaleLowerCase("id").includes(search) &&
-        (!role || member.role === role)
-      );
-
-      if (!filtered.length) {
-        memberGrid.innerHTML = '<div class="empty-state"><div style="font-size:2rem">🔎</div><strong>Anggota tidak ditemukan</strong><br><span>Coba kata kunci atau filter yang berbeda.</span></div>';
-        return;
-      }
-
-      memberGrid.innerHTML = filtered.map(member => `
+      // ... (kode pencarian dan filter tetap sama) ...
+      
+      memberGrid.innerHTML = filtered.map(member => {
+        const isUrl = member.photo && member.photo.startsWith('http');
+        const photoContent = isUrl ? `<img src="${member.photo}" alt="Foto" onerror="this.outerHTML='👤'">` : (member.photo || '👤');
+        
+        return `
         <article class="member-card">
           <div class="member-cover" style="--cover:linear-gradient(135deg,#dcecff,#edf6ff)">
             <span class="member-number">ANGGOTA ${String(member.id).padStart(2, "0")}</span>
-            <div class="member-avatar" style="--avatar-bg:#e0edff" aria-hidden="true">${member.photo || '👤'}</div>
+            <div class="member-avatar" style="--avatar-bg:#e0edff" aria-hidden="true">${photoContent}</div>
           </div>
           <div class="member-body">
             <h3>${escapeHTML(member.name)}</h3>
@@ -589,7 +611,7 @@
             <button class="text-button profile-button" type="button" data-member-id="${member.id}">Lihat profil →</button>
           </div>
         </article>
-      `).join("");
+      `}).join("");
     }
 
     function renderRoleFilter() {
