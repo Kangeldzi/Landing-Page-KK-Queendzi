@@ -2,669 +2,873 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kelompok Belajar Kelas 5 - SDN Negeri Situ Udik</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1769e8">
+  <meta name="description" content="Landing page kelompok belajar siswa kelas 5C SDN Negeri Situ Udik.">
+  <title>Kelompok Belajar Kelas 5C | SDN Negeri Situ Udik</title>
   <style>
     :root {
-      --primary: #4F46E5; /* Indigo */
-      --primary-light: #818CF8;
-      --primary-dark: #3730A3;
-      --secondary: #10B981; /* Emerald */
-      --accent-pink: #F472B6;
-      --accent-yellow: #FBBF24;
-      --accent-orange: #F97316;
-      --bg-light: #F3F4F6;
-      --bg-card: #FFFFFF;
-      --text-dark: #1F2937;
-      --text-muted: #6B7280;
-      --shadow-soft: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
-      --shadow-clay: 8px 8px 16px rgba(0,0,0,0.08), -8px -8px 16px rgba(255,255,255,0.9);
-      --shadow-clay-inner: inset 4px 4px 8px rgba(0,0,0,0.05), inset -4px -4px 8px rgba(255,255,255,0.8);
-      --radius-sm: 16px;
-      --radius-md: 24px;
-      --radius-lg: 32px;
-      --font-heading: 'Fredoka', sans-serif;
-      --font-body: 'Quicksand', sans-serif;
+      --blue: #1769e8;
+      --blue-dark: #1049a8;
+      --blue-soft: #eaf2ff;
+      --sky: #dff4ff;
+      --yellow: #ffd45c;
+      --ink: #17243b;
+      --muted: #65748b;
+      --surface: #ffffff;
+      --page: #f5f8ff;
+      --line: #e4eaf4;
+      --green: #16845b;
+      --shadow: 0 16px 42px rgba(26, 67, 132, .10);
+      --radius: 22px;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { font-family: var(--font-body); background: var(--bg-light); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; color: var(--ink); background: var(--page);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    body.modal-open { overflow: hidden; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
     img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; font-family: inherit; border: none; background: none; }
-    .container { width: min(1200px, 92%); margin-inline: auto; }
-
-    /* Animasi */
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    @keyframes float-delay { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-    @keyframes popIn { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
-    .reveal { opacity: 0; transform: translateY(30px); transition: 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* Navbar */
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(243, 244, 246, 0.9); backdrop-filter: blur(12px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.8rem 0; }
-    .brand { display: flex; align-items: center; gap: 0.7rem; font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--primary-dark); }
-    .brand-icon { width: 44px; height: 44px; background: var(--primary); border-radius: 50%; display: grid; place-items: center; color: white; font-size: 1.4rem; box-shadow: var(--shadow-clay); }
-    .nav-links { display: flex; align-items: center; gap: 0.5rem; }
-    .nav-links a { padding: 0.5rem 1rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
-    .nav-links a:hover { background: var(--primary-light); color: white; }
-    .nav-cta { background: var(--primary) !important; color: white !important; padding: 0.6rem 1.4rem !important; border-radius: 50px !important; box-shadow: var(--shadow-clay); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 10px; }
-    .hamburger span { width: 26px; height: 3px; background: var(--primary-dark); border-radius: 3px; transition: 0.3s; }
-    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-    @media (max-width: 900px) {
-      .hamburger { display: flex; }
-      .nav-links { position: fixed; top: 70px; left: 0; right: 0; background: white; flex-direction: column; padding: 1.5rem; gap: 0.8rem; box-shadow: var(--shadow-soft); transform: translateY(-150%); transition: 0.3s; border-radius: 0 0 24px 24px; }
-      .nav-links.open { transform: translateY(0); }
-      .nav-links a { width: 100%; text-align: center; }
+    :focus-visible { outline: 3px solid #ffbd31; outline-offset: 3px; }
+    .container { width: min(1120px, calc(100% - 36px)); margin-inline: auto; }
+    .top-note { background: #103f91; color: #fff; text-align: center; font-size: .82rem; padding: 7px 12px; }
+    .navbar {
+      position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.92);
+      border-bottom: 1px solid rgba(222,231,245,.9); backdrop-filter: blur(14px);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .brand-mark {
+      width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center;
+      background: linear-gradient(145deg, var(--blue), #55b9ff); color: white; font-size: 1.45rem;
+      box-shadow: 0 8px 20px rgba(23,105,232,.22); flex: 0 0 auto;
+    }
+    .brand strong { display: block; font-size: .98rem; line-height: 1.2; }
+    .brand small { display: block; color: var(--muted); font-size: .77rem; margin-top: 4px; }
+    .nav-links { display: flex; align-items: center; gap: 23px; }
+    .nav-links a { color: #40516b; font-size: .9rem; font-weight: 650; transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta, .btn {
+      border: 0; border-radius: 13px; padding: 12px 17px; display: inline-flex; align-items: center;
+      justify-content: center; gap: 8px; font-weight: 750; transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .nav-cta, .btn-primary { background: var(--blue); color: white; box-shadow: 0 8px 18px rgba(23,105,232,.2); }
+    .nav-cta:hover, .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); }
+    .btn-secondary { background: white; color: var(--blue-dark); border: 1px solid #dce7fa; }
+    .btn-secondary:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; width: 44px; height: 44px; border-radius: 13px; color: var(--ink); font-size: 1.3rem; }
+    .hero { padding: 62px 0 50px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 48px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; background: #e5f0ff; color: #1655b5;
+      border: 1px solid #d6e7ff; border-radius: 999px; padding: 7px 12px; font-size: .8rem; font-weight: 800;
+    }
+    .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #22a06b; }
+    h1 { font-size: clamp(2.45rem, 5.2vw, 4.5rem); line-height: 1.06; letter-spacing: -.055em; margin: 20px 0 19px; }
+    h1 .accent { color: var(--blue); }
+    .hero-copy { color: var(--muted); max-width: 590px; font-size: 1.05rem; margin: 0 0 25px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-meta { display: flex; align-items: center; gap: 13px; margin-top: 27px; color: var(--muted); font-size: .86rem; }
+    .mini-avatars { display: flex; padding-left: 5px; }
+    .mini-avatars span { width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; margin-left: -6px; display: grid; place-items: center; font-size: .8rem; background: #dcecff; }
+    .hero-art {
+      min-height: 395px; position: relative; display: grid; place-items: center;
+      border-radius: 35px; background: linear-gradient(140deg, #dff3ff 0%, #edf1ff 60%, #fff5d7 100%);
+      overflow: hidden; isolation: isolate;
+    }
+    .hero-art::before, .hero-art::after { content: ""; position: absolute; border-radius: 50%; z-index: -1; }
+    .hero-art::before { width: 280px; height: 280px; background: rgba(255,255,255,.62); top: -85px; right: -60px; }
+    .hero-art::after { width: 190px; height: 190px; background: rgba(255,211,82,.35); bottom: -80px; left: -45px; }
+    .art-card { width: min(360px, 84%); background: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.95); border-radius: 25px; padding: 22px; box-shadow: 0 24px 55px rgba(37,75,140,.15); transform: rotate(-2deg); }
+    .art-card-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .art-card-head strong { font-size: 1rem; }
+    .art-pill { font-size: .7rem; background: #e5f8ed; color: #167448; padding: 5px 9px; border-radius: 999px; font-weight: 800; }
+    .art-students { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+    .student-bubble { display: grid; place-items: center; gap: 5px; font-size: .65rem; color: #596981; font-weight: 700; }
+    .student-bubble .emoji { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 17px; font-size: 1.8rem; background: var(--bubble, #e4f0ff); }
+    .art-footer { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: .76rem; }
+    .float-note { position: absolute; padding: 12px 15px; border-radius: 16px; background: white; box-shadow: var(--shadow); font-size: .85rem; font-weight: 800; }
+    .float-note.one { left: 12px; top: 55px; transform: rotate(-6deg); }
+    .float-note.two { right: 13px; bottom: 48px; transform: rotate(5deg); }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 6px; }
+    .stat-card { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: flex; align-items: center; gap: 13px; }
+    .stat-icon { width: 43px; height: 43px; flex: 0 0 auto; border-radius: 14px; display: grid; place-items: center; background: var(--tint, #eaf2ff); font-size: 1.25rem; }
+    .stat-card strong { display: block; font-size: 1.35rem; line-height: 1.2; }
+    .stat-card span { color: var(--muted); font-size: .78rem; }
+    section { padding: 78px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+    .section-kicker { color: var(--blue); font-weight: 850; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; }
+    h2 { font-size: clamp(1.8rem, 3.3vw, 2.7rem); line-height: 1.15; letter-spacing: -.04em; margin: 8px 0 10px; }
+    .section-desc { color: var(--muted); margin: 0; max-width: 650px; }
+    .section-alt { background: #edf4ff; }
+    .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 22px; }
+    .search-wrap { flex: 1 1 240px; position: relative; }
+    .search-wrap span { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #8090a8; }
+    .search-wrap input, .toolbar select {
+      width: 100%; border: 1px solid #dce5f2; border-radius: 13px; background: white; padding: 12px 14px;
+      color: var(--ink); min-height: 47px;
+    }
+    .search-wrap input { padding-left: 42px; }
+    .toolbar select { width: auto; min-width: 170px; }
+    .member-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+    .member-card { background: white; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; box-shadow: 0 6px 20px rgba(28,65,125,.04); transition: transform .25s, box-shadow .25s; }
+    .member-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .member-cover { height: 92px; background: var(--cover, linear-gradient(135deg,#dcecff,#edf6ff)); position: relative; }
+    .member-avatar { position: absolute; left: 20px; bottom: -37px; width: 76px; height: 76px; border: 4px solid white; border-radius: 23px; display: grid; place-items: center; font-size: 2.25rem; background: var(--avatar-bg, #e2efff); box-shadow: 0 5px 15px rgba(30,64,120,.1); }
+    .member-number { position: absolute; right: 15px; top: 13px; border-radius: 999px; background: rgba(255,255,255,.83); color: #355273; font-size: .7rem; font-weight: 850; padding: 5px 9px; }
+    .member-body { padding: 48px 18px 18px; }
+    .member-body h3 { margin: 0; font-size: 1.02rem; }
+    .member-class { color: var(--muted); font-size: .8rem; margin-top: 3px; }
+    .role-tag { display: inline-flex; margin: 12px 0 9px; border-radius: 9px; padding: 5px 9px; font-size: .73rem; font-weight: 800; color: #1554b4; background: #eaf2ff; }
+    .member-description { min-height: 44px; font-size: .82rem; color: var(--muted); margin: 0 0 14px; }
+    .text-button { background: transparent; border: 0; color: var(--blue); padding: 0; font-weight: 800; font-size: .86rem; }
+    .text-button:hover { color: var(--blue-dark); }
+    .empty-state { grid-column: 1 / -1; text-align: center; border: 1px dashed #bdcde4; background: rgba(255,255,255,.65); padding: 35px 20px; border-radius: 18px; color: var(--muted); }
+    .structure-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: start; }
+    .structure-panel, .about-panel { background: white; border: 1px solid var(--line); border-radius: var(--radius); padding: 25px; box-shadow: 0 8px 24px rgba(28,65,125,.04); }
+    .structure-panel h3, .about-panel h3 { margin: 0 0 18px; font-size: 1.15rem; }
+    .org-tree { display: flex; flex-direction: column; align-items: center; }
+    .org-node { width: min(100%, 270px); text-align: center; border: 1px solid #d9e7fa; background: #f5f9ff; padding: 13px 15px; border-radius: 15px; position: relative; }
+    .org-node.primary { background: var(--blue); border-color: var(--blue); color: white; box-shadow: 0 10px 20px rgba(23,105,232,.18); }
+    .org-node strong { display: block; font-size: .91rem; }
+    .org-node small { display: block; opacity: .78; margin-top: 2px; font-size: .76rem; }
+    .org-line { width: 2px; height: 23px; background: #b8cce9; }
+    .org-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; position: relative; }
+    .org-pair .org-node { width: 100%; }
+    .org-members { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; margin-top: 12px; }
+    .org-members .org-node { width: 100%; padding: 11px 8px; }
+    .org-note { font-size: .78rem; color: var(--muted); margin: 16px 0 0; }
+    .values-list { display: grid; gap: 14px; }
+    .value-item { display: flex; gap: 13px; align-items: flex-start; }
+    .value-icon { width: 42px; height: 42px; border-radius: 14px; background: #eaf2ff; display: grid; place-items: center; flex: 0 0 auto; font-size: 1.2rem; }
+    .value-item strong { display: block; margin: 1px 0 3px; }
+    .value-item p { color: var(--muted); font-size: .88rem; margin: 0; }
+    .task-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .task-card { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: flex; gap: 13px; align-items: flex-start; transition: border-color .2s, background .2s; }
+    .task-card.done { border-color: #b9e7d0; background: #f3fff8; }
+    .task-check { width: 23px; height: 23px; flex: 0 0 auto; accent-color: var(--green); margin-top: 3px; cursor: pointer; }
+    .task-main { flex: 1; min-width: 0; }
+    .task-main strong { display: block; line-height: 1.35; }
+    .task-main p { color: var(--muted); font-size: .82rem; margin: 6px 0 8px; }
+    .task-owner { font-size: .76rem; color: #375c92; font-weight: 750; }
+    .task-card.done .task-main strong { text-decoration: line-through; color: #527365; }
+    .progress-panel { background: #fff; border: 1px solid var(--line); border-radius: 17px; padding: 18px 20px; margin-top: 18px; }
+    .progress-head { display: flex; justify-content: space-between; gap: 15px; font-weight: 800; font-size: .88rem; margin-bottom: 10px; }
+    .progress-track { height: 10px; background: #e8eef7; border-radius: 99px; overflow: hidden; }
+    .progress-fill { width: 0; height: 100%; background: linear-gradient(90deg, #1769e8, #46c3ff); border-radius: inherit; transition: width .3s; }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; grid-template-rows: 170px 170px; gap: 15px; }
+    .gallery-tile { border: 0; border-radius: 20px; overflow: hidden; position: relative; display: flex; align-items: end; text-align: left; padding: 18px; color: white; background: var(--tile-bg, linear-gradient(135deg,#9bc9ff,#3768bd)); isolation: isolate; min-width: 0; }
+    .gallery-tile::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,transparent 10%,rgba(12,35,75,.8)); z-index: -1; transition: opacity .2s; }
+    .gallery-tile:hover::before { opacity: .8; }
+    .gallery-tile:first-child { grid-row: span 2; }
+    .gallery-emoji { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); font-size: clamp(3rem, 7vw, 5.4rem); filter: drop-shadow(0 8px 8px rgba(0,0,0,.12)); }
+    .gallery-tile strong { display: block; font-size: 1rem; }
+    .gallery-tile small { display: block; opacity: .85; font-size: .75rem; }
+    .gallery-disclaimer { color: var(--muted); font-size: .8rem; margin: 14px 0 0; }
+    .project-box { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; background: linear-gradient(120deg,#1457bd,#2384ef); color: white; border-radius: 27px; padding: 34px; position: relative; overflow: hidden; }
+    .project-box::after { content: "✦"; position: absolute; right: 28%; top: -70px; font-size: 220px; opacity: .07; }
+    .project-box h2 { margin-top: 8px; }
+    .project-box p { color: #dceaff; max-width: 680px; margin-bottom: 0; }
+    .project-box .btn { position: relative; z-index: 1; background: var(--yellow); color: #2e3b52; white-space: nowrap; }
+    .footer { background: #112c59; color: white; padding: 34px 0 22px; }
+    .footer-top { display: flex; justify-content: space-between; gap: 25px; align-items: start; }
+    .footer .brand small { color: #c3d4ef; }
+    .footer-note { color: #c3d4ef; font-size: .84rem; max-width: 400px; margin: 12px 0 0; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 17px; color: #e1ebfb; font-size: .84rem; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.15); margin-top: 25px; padding-top: 17px; display: flex; justify-content: space-between; gap: 15px; color: #c3d4ef; font-size: .76rem; }
+    .back-top { position: fixed; right: 18px; bottom: 18px; z-index: 15; border: 0; width: 46px; height: 46px; border-radius: 15px; background: var(--blue); color: white; box-shadow: var(--shadow); font-size: 1.2rem; display: none; }
+    .back-top.visible { display: block; }
+    .modal { position: fixed; inset: 0; z-index: 50; display: none; place-items: center; padding: 18px; background: rgba(10,24,49,.58); backdrop-filter: blur(6px); }
+    .modal.open { display: grid; }
+    .modal-card { width: min(470px, 100%); max-height: min(85vh, 720px); overflow: auto; background: white; border-radius: 25px; box-shadow: 0 25px 90px rgba(0,0,0,.25); animation: modal-in .2s ease-out; }
+    @keyframes modal-in { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+    .modal-banner { height: 105px; background: linear-gradient(135deg,#dcecff,#fff1c9); position: relative; }
+    .modal-close { position: absolute; top: 13px; right: 13px; width: 37px; height: 37px; border: 0; border-radius: 12px; background: rgba(255,255,255,.9); color: var(--ink); font-size: 1.25rem; }
+    .modal-avatar { width: 88px; height: 88px; border: 5px solid white; border-radius: 25px; position: absolute; left: 24px; bottom: -40px; display: grid; place-items: center; font-size: 2.7rem; background: #e2efff; }
+    .modal-content { padding: 52px 25px 25px; }
+    .modal-content h2 { font-size: 1.65rem; margin: 0 0 4px; }
+    .modal-role { color: var(--blue); font-size: .88rem; font-weight: 800; }
+    .modal-content p { color: var(--muted); }
+    .detail-list { display: grid; gap: 11px; margin-top: 18px; }
+    .detail-row { border: 1px solid var(--line); border-radius: 13px; padding: 11px 13px; }
+    .detail-row small { display: block; color: var(--muted); font-size: .74rem; }
+    .detail-row strong { display: block; font-size: .9rem; overflow-wrap: anywhere; }
+    .toast { position: fixed; z-index: 70; left: 50%; bottom: 22px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #17243b; color: white; padding: 12px 17px; border-radius: 13px; box-shadow: var(--shadow); font-size: .87rem; transition: opacity .2s, transform .2s; width: max-content; max-width: calc(100% - 30px); }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .reveal { opacity: 0; transform: translateY(15px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.revealed { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    
+    @media (max-width: 950px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: .83rem; }
+      .nav-cta { display: none; }
+      .hero-grid { gap: 28px; }
+      .member-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .stats { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, 560px); }
+      .nav-inner { min-height: 68px; }
+      .brand-mark { width: 42px; height: 42px; }
+      .brand strong { font-size: .88rem; }
+      .brand small { font-size: .7rem; }
+      .menu-toggle { display: grid; place-items: center; flex: 0 0 auto; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 14px; right: 14px; padding: 12px; background: white; border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px; border-radius: 10px; font-size: .92rem; }
+      .nav-links a:hover { background: var(--blue-soft); }
+      .hero { padding: 38px 0 32px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      h1 { font-size: clamp(2.5rem, 12vw, 3.6rem); }
+      .hero-copy { font-size: .98rem; }
+      .hero-art { min-height: 330px; border-radius: 27px; }
+      .float-note.one { left: 8px; top: 28px; }
+      .float-note.two { right: 8px; bottom: 25px; }
+      .stats { gap: 10px; }
+      .stat-card { padding: 13px; gap: 10px; }
+      .stat-icon { width: 37px; height: 37px; border-radius: 12px; }
+      .stat-card strong { font-size: 1.18rem; }
+      .stat-card span { font-size: .72rem; }
+      section { padding: 57px 0; }
+      .section-head { align-items: start; flex-direction: column; gap: 12px; }
+      .member-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+      .member-cover { height: 76px; }
+      .member-avatar { width: 64px; height: 64px; border-radius: 19px; font-size: 1.9rem; left: 13px; bottom: -31px; }
+      .member-body { padding: 42px 13px 15px; }
+      .member-body h3 { font-size: .93rem; }
+      .member-description { font-size: .78rem; }
+      .structure-grid { grid-template-columns: 1fr; }
+      .task-list { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: 170px 145px 145px; gap: 10px; }
+      .gallery-tile:first-child { grid-row: auto; grid-column: span 2; }
+      .gallery-tile { padding: 13px; border-radius: 16px; }
+      .gallery-emoji { font-size: 3.2rem; top: 16px; }
+      .project-box { grid-template-columns: 1fr; padding: 25px; gap: 18px; }
+      .project-box .btn { justify-self: start; }
+      .footer-top, .footer-bottom { flex-direction: column; }
+      .footer-links { gap: 12px; }
+    }
+    @media (max-width: 370px) {
+      .container { width: calc(100% - 22px); }
+      .member-grid { grid-template-columns: 1fr; }
+      .member-card { display: grid; grid-template-columns: 94px 1fr; }
+      .member-cover { height: 100%; min-height: 150px; }
+      .member-avatar { left: 13px; top: 15px; bottom: auto; }
+      .member-number { left: 11px; right: auto; top: 93px; }
+      .member-body { padding: 15px; }
+      .member-description { min-height: auto; }
+      .hero-actions .btn { width: 100%; }
     }
 
-    /* Tombol Umum */
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 50px; font-family: var(--font-heading); font-weight: 600; font-size: 1rem; transition: 0.3s; box-shadow: var(--shadow-clay); border: none; }
-    .btn:active { transform: scale(0.95); box-shadow: var(--shadow-clay-inner); }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
-    .btn-yellow { background: var(--accent-yellow); color: #78350F; }
-    .btn-yellow:hover { background: #F59E0B; transform: translateY(-3px); }
-    .btn-pink { background: var(--accent-pink); color: white; }
-    .btn-pink:hover { background: #EC4899; transform: translateY(-3px); }
-
-    /* HERO PLAYGROUND (Sesuai Gambar) */
-    .hero-playground { padding: 120px 0 60px; position: relative; overflow: hidden; background: #F3F4F6; }
-    .playground-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 1.5rem; align-items: stretch; }
-    
-    /* Kartu Kiri (Misi Mingguan) */
-    .play-card-left { display: flex; flex-direction: column; gap: 1.5rem; }
-    .action-cards { display: flex; gap: 0.8rem; }
-    .action-card { flex: 1; background: white; border-radius: var(--radius-md); padding: 1rem 0.5rem; text-align: center; box-shadow: var(--shadow-clay); transition: 0.3s; cursor: pointer; }
-    .action-card:hover { transform: translateY(-5px); }
-    .action-card .emoji { font-size: 1.5rem; margin-bottom: 0.3rem; display: block; }
-    .action-card span { font-size: 0.75rem; font-weight: 700; color: var(--text-dark); }
-
-    .mission-card { background: white; border-radius: var(--radius-lg); padding: 2rem 1.5rem; box-shadow: var(--shadow-clay); text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    .mission-icon { font-size: 3rem; margin-bottom: 0.5rem; animation: float 3s ease-in-out infinite; }
-    .mission-card h2 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-dark); margin-bottom: 0.5rem; }
-    .mission-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-    
-    /* Progress Bar */
-    .progress-section { text-align: left; margin-bottom: 1.5rem; }
-    .progress-header { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .progress-bar-container { height: 12px; background: var(--bg-light); border-radius: 50px; display: flex; overflow: hidden; box-shadow: var(--shadow-clay-inner); }
-    .progress-segment { height: 100%; }
-    .seg-design { background: var(--accent-orange); width: 20%; }
-    .seg-skills { background: var(--primary); width: 45%; }
-    .seg-powers { background: var(--accent-yellow); width: 35%; }
-    .progress-labels { display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; margin-top: 0.5rem; color: var(--text-muted); }
-    .progress-labels span::before { content: '●'; margin-right: 4px; }
-    .lbl-design::before { color: var(--accent-orange); }
-    .lbl-skills::before { color: var(--primary); }
-    .lbl-powers::before { color: var(--accent-yellow); }
-
-    .mission-bottom { background: #FEF3C7; border-radius: var(--radius-md); padding: 1.5rem 1rem; display: flex; flex-direction: column; align-items: center; gap: 0.8rem; box-shadow: var(--shadow-clay); position: relative; }
-    .mission-bottom .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
-    .badge { background: white; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 0.3rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    .trust-text { font-size: 0.75rem; font-weight: 700; color: #B45309; }
-
-    /* Kartu Kanan (Grid Avatar) */
-    .play-card-right { background: white; border-radius: var(--radius-lg); padding: 1.5rem; box-shadow: var(--shadow-clay); }
-    .avatar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    .avatar-item { background: var(--bg-light); border-radius: var(--radius-md); padding: 1rem 0.5rem; text-align: center; box-shadow: var(--shadow-clay-inner); transition: 0.3s; cursor: pointer; }
-    .avatar-item:hover { transform: scale(1.05) translateY(-5px); box-shadow: var(--shadow-clay); background: white; }
-    .avatar-item span { display: block; font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text-dark); }
-    .avatar-img { width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; object-fit: cover; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
-    
-    /* Info Tambahan di Bawah Hero */
-    .hero-info { text-align: center; margin-top: 2rem; }
-    .hero-info h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--primary-dark); margin-bottom: 0.5rem; }
-    .hero-info p { font-size: 1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
-
-    @media (max-width: 900px) {
-      .playground-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .avatar-grid { grid-template-columns: repeat(2, 1fr); }
-      .action-cards { flex-direction: column; }
-    }
-
-    /* Section Umum */
-    section { padding: 4rem 0; }
-    .section-head { text-align: center; max-width: 700px; margin: 0 auto 2.5rem; }
-    .section-tag { display: inline-block; background: #E0E7FF; color: var(--primary-dark); padding: 0.4rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; font-family: var(--font-heading); }
-    .section-head h2 { font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--primary-dark); margin-bottom: 0.5rem; }
-    .section-head p { color: var(--text-muted); font-size: 1rem; }
-
-    /* Profil */
-    .profile-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); padding: 2rem; display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem; align-items: center; }
-    .profile-emoji { font-size: 6rem; text-align: center; animation: float 4s ease-in-out infinite; }
-    .profile-info h3 { font-family: var(--font-heading); font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 0.8rem; }
-    .profile-info .desc { color: var(--text-muted); margin-bottom: 1.5rem; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; }
-    .stat-item { background: var(--bg-light); border-radius: var(--radius-sm); padding: 1rem; text-align: center; box-shadow: var(--shadow-clay-inner); }
-    .stat-value { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 700; color: var(--primary); }
-    .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
-    @media (max-width: 768px) { .profile-card { grid-template-columns: 1fr; text-align: center; } }
-
-    /* Anggota & Filter */
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; align-items: center; }
-    .search-box { position: relative; flex: 1; max-width: 320px; }
-    .search-box input { width: 100%; padding: 0.8rem 1rem 0.8rem 2.8rem; border-radius: 50px; border: 2px solid #E5E7EB; font-family: var(--font-body); font-size: 0.95rem; transition: 0.3s; background: white; }
-    .search-box input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
-    .search-box .search-ico { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); font-size: 1.1rem; color: var(--text-muted); }
-    .filter-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
-    .chip { padding: 0.6rem 1.2rem; border-radius: 50px; background: white; border: 2px solid #E5E7EB; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); transition: 0.3s; }
-    .chip.active { background: var(--primary); color: white; border-color: var(--primary); }
-    
-    .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
-    .member-card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; border: 3px solid transparent; animation: popIn 0.5s ease backwards; }
-    .member-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-clay); border-color: #E0E7FF; }
-    .member-photo { aspect-ratio: 1 / 1; display: grid; place-items: center; font-size: 4.5rem; background: #F3F4F6; position: relative; }
-    .member-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .member-number { position: absolute; top: 1rem; left: 1rem; background: var(--accent-yellow); color: #78350F; font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    .member-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
-    .member-name { font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem; color: var(--text-dark); margin-bottom: 0.3rem; }
-    .member-role { display: inline-block; align-self: flex-start; background: #E0E7FF; color: var(--primary-dark); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 50px; margin-bottom: 0.8rem; }
-    .member-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.2rem; flex: 1; }
-    .member-btn { width: 100%; padding: 0.7rem; font-size: 0.9rem; border-radius: var(--radius-sm); }
-
-    /* Modal */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(31, 41, 55, 0.6); backdrop-filter: blur(5px); display: none; place-items: center; z-index: 2000; padding: 1rem; }
-    .modal-overlay.open { display: grid; }
-    .modal { background: white; border-radius: var(--radius-lg); max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; animation: popIn 0.3s ease; box-shadow: var(--shadow-clay); }
-    .modal-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; background: var(--bg-light); display: grid; place-items: center; font-size: 1.2rem; transition: 0.3s; color: var(--text-dark); }
-    .modal-close:hover { background: #FEE2E2; color: #DC2626; transform: rotate(90deg); }
-    .modal-photo { width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 1.5rem; display: grid; place-items: center; font-size: 4rem; background: var(--bg-light); overflow: hidden; border: 6px solid white; box-shadow: var(--shadow-soft); }
-    .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .modal h3 { text-align: center; font-family: var(--font-heading); color: var(--primary-dark); font-size: 1.5rem; margin-bottom: 0.3rem; }
-    .modal .m-role { text-align: center; display: block; margin: 0 auto 1.5rem; width: fit-content; }
-    .modal-info { display: grid; gap: 1rem; }
-    .modal-info-item { background: var(--bg-light); border-radius: var(--radius-sm); padding: 1rem; }
-    .modal-info-item .label { font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 0.2rem; }
-    .modal-info-item .value { font-size: 0.95rem; color: var(--text-dark); font-weight: 500; }
-
-    /* Tugas & Galeri & Proyek */
-    .tasks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-    .task-card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); padding: 1.5rem; border-left: 8px solid var(--accent-yellow); }
-    .task-head { display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
-    .task-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; color: var(--text-dark); }
-    .task-status { font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 50px; }
-    .status-selesai { background: #D1FAE5; color: #065F46; }
-    .status-proses { background: #FEF3C7; color: #92400E; }
-    .task-owner { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; }
-    .task-progress { height: 10px; background: #E5E7EB; border-radius: 50px; overflow: hidden; margin-top: 1rem; }
-    .task-progress-bar { height: 100%; background: var(--primary); border-radius: 50px; }
-
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
-    .gallery-item { aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; position: relative; cursor: pointer; background: #E5E7EB; display: grid; place-items: center; font-size: 4rem; box-shadow: var(--shadow-soft); transition: 0.3s; }
-    .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-clay); }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 2rem 1rem 0.8rem; font-size: 0.85rem; font-weight: 600; }
-
-    .project-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
-    .project-visual { border-radius: var(--radius-md); background: linear-gradient(135deg, #FEF3C7, #FDE68A); display: grid; place-items: center; font-size: 6rem; min-height: 250px; box-shadow: var(--shadow-clay-inner); }
-    @media (max-width: 768px) { .project-card { grid-template-columns: 1fr; } }
-
-    /* Footer */
-    footer { background: var(--primary-dark); color: white; padding: 4rem 0 2rem; margin-top: 3rem; border-radius: 40px 40px 0 0; }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.5rem; text-align: center; font-size: 0.9rem; color: #9CA3AF; }
-    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
-
-    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: grid; place-items: center; font-size: 1.5rem; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 900; box-shadow: var(--shadow-clay); }
-    .back-to-top.show { opacity: 1; visibility: visible; }
+    /* LOADING OVERLAY */
+    .loading-overlay { position: fixed; inset: 0; background: var(--page); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.4s ease; }
+    .loading-spinner { width: 50px; height: 50px; border: 5px solid #dcecff; border-top: 5px solid var(--blue); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .loading-text { color: var(--muted); font-weight: 600; font-size: 0.95rem; }
   </style>
 </head>
 <body>
+  <!-- LOADING SCREEN -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Memuat data terbaru...</div>
+  </div>
 
-  <!-- Navbar -->
-  <nav class="navbar">
+  <div class="top-note">📚 Tahun Pelajaran <span id="topYear">2026/2027</span> · Belajar, Berkarya, dan Bertumbuh Bersama</div>
+
+  <header class="navbar">
     <div class="container nav-inner">
-      <a href="#beranda" class="brand">
-        <span class="brand-icon" id="navLogo">🎓</span>
-        <span id="navBrandText">Kelas 5</span>
+      <a class="brand" href="#beranda" aria-label="Kembali ke beranda">
+        <span class="brand-mark" id="mainLogo" aria-hidden="true">🎓</span>
+        <span><strong>Kelompok Belajar Kelas 5C</strong><small>SDN Negeri Situ Udik</small></span>
       </a>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-      <div class="nav-links" id="navLinks">
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
         <a href="#beranda">Beranda</a>
         <a href="#anggota">Anggota</a>
-        <a href="#tugas">Tugas</a>
+        <a href="#struktur">Struktur</a>
+        <a href="#tugas">Pembagian Tugas</a>
         <a href="#galeri">Galeri</a>
-        <!-- TOMBOL LOGIN ADMIN MENGARAH KE DASHBOARD -->
-        <a href="dashboard-admin.html" class="nav-cta">Login Admin</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- HERO PLAYGROUND -->
-  <header class="hero-playground" id="beranda">
-    <div class="container">
-      <div class="playground-grid reveal">
-        
-        <!-- KIRI: Misi & Progress -->
-        <div class="play-card-left">
-          <div class="action-cards">
-            <div class="action-card">
-              <span class="emoji">📝</span>
-              <span>Belajar</span>
-            </div>
-            <div class="action-card">
-              <span class="emoji">🤝</span>
-              <span>Diskusi</span>
-            </div>
-            <div class="action-card">
-              <span class="emoji">✨</span>
-              <span>Berkarya</span>
-            </div>
-          </div>
-
-          <div class="mission-card">
-            <div class="mission-icon">🚀</div>
-            <h2>Misi Mingguan</h2>
-            <p>Mari selesaikan proyek kelompok dan kumpulkan bintang!</p>
-            
-            <div class="progress-section">
-              <div class="progress-header">
-                <span>Progres Kelompok</span>
-                <span>72%</span>
-              </div>
-              <div class="progress-bar-container">
-                <div class="progress-segment seg-design"></div>
-                <div class="progress-segment seg-skills"></div>
-                <div class="progress-segment seg-powers"></div>
-              </div>
-              <div class="progress-labels">
-                <span class="lbl-design">Materi (20%)</span>
-                <span class="lbl-skills">Praktik (45%)</span>
-                <span class="lbl-powers">Laporan (35%)</span>
-              </div>
-            </div>
-
-            <a href="#tugas" class="btn btn-primary" style="width: 100%;">Lihat Misi</a>
-          </div>
-
-          <div class="mission-bottom">
-            <div class="badges">
-              <span class="badge">🎮 Main</span>
-              <span class="badge">🎨 Kreatif</span>
-              <span class="badge">🤝 Seru</span>
-            </div>
-            <span class="trust-text">Dipercaya oleh Siswa & Guru</span>
-          </div>
-        </div>
-
-        <!-- KANAN: Grid Avatar Siswa -->
-        <div class="play-card-right">
-          <div class="avatar-grid" id="avatarGrid">
-            <!-- Akan diisi oleh JavaScript -->
-          </div>
-          <div style="text-align: center; margin-top: 1.5rem;">
-            <a href="#anggota" class="btn btn-yellow" style="width: 100%;">Kenali Teman Kami!</a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Info Tambahan -->
-      <div class="hero-info reveal">
-        <h1 id="heroTitle">Selamat Datang di Kelompok Belajar Kelas 5!</h1>
-        <p id="heroSub">SDN Negeri Situ Udik. Tempatnya belajar, bermain, dan tumbuh bersama!</p>
-      </div>
-
+        <a href="#tentang">Tentang</a>
+        <a href="dashboard-admin.html" style="color:var(--blue); font-weight:800;">Login Admin ↗</a>
+      </nav>
+      <a class="nav-cta" href="#anggota">Kenali Kelompok Kami ↗</a>
     </div>
   </header>
 
-  <!-- PROFIL SINGKAT -->
-  <section id="profil">
-    <div class="container">
-      <div class="profile-card reveal">
-        <div class="profile-emoji" id="profileEmoji">🌈</div>
-        <div class="profile-info">
-          <h3 id="profileName">Kelompok Belajar Kelas 5</h3>
-          <p class="desc" id="profileDesc">Kami adalah kelompok belajar yang terdiri dari 7 siswa-siswi...</p>
-          <div class="stats-grid">
-            <div class="stat-item"><div class="stat-value" id="statSchool">SDN Negeri Situ Udik</div><div class="stat-label">Sekolah</div></div>
-            <div class="stat-item"><div class="stat-value" id="statCount">7</div><div class="stat-label">Anggota</div></div>
-            <div class="stat-item"><div class="stat-value" id="statYear">2026/2027</div><div class="stat-label">Tahun</div></div>
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="eyebrow"><span class="dot"></span> Satu kelompok, banyak ide hebat</div>
+            <h1>Belajar Bersama,<br><span class="accent">Tumbuh Bersama!</span></h1>
+            <p class="hero-copy" id="heroDesc">Kami adalah kelompok belajar siswa-siswi kelas 5C SDN Negeri Situ Udik. Bersama-sama, kami bertukar ide, saling membantu, dan bersemangat menyelesaikan tugas sekolah.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#anggota">👋 Kenali Anggota</a>
+              <a class="btn btn-secondary" href="#tugas">✨ Jelajahi Proyek</a>
+            </div>
+            <div class="hero-meta">
+              <div class="mini-avatars" aria-hidden="true" id="miniAvatars"></div>
+              <span><strong style="color:var(--ink)" id="heroMemberCount">6 siswa-siswi</strong><br>Belajar dan bekerja sama</span>
+            </div>
+          </div>
+          <div class="hero-art reveal" aria-label="Ilustrasi kelompok siswa belajar bersama">
+            <div class="float-note one">💡 Ide hebat dimulai bersama!</div>
+            <div class="art-card">
+              <div class="art-card-head"><strong>Tim Kecil, Mimpi Besar</strong><span class="art-pill">KELAS V</span></div>
+              <div class="art-students" id="heroAvatarGrid" aria-label="Avatar ilustrasi anggota kelompok">
+                <!-- Diisi via JS -->
+              </div>
+              <div class="art-footer"><span>🤝 Kompak dan kreatif</span><span>★ Semangat belajar</span></div>
+            </div>
+            <div class="float-note two">🎯 Bersama kita bisa!</div>
+          </div>
+        </div>
+
+        <div class="stats reveal" aria-label="Ringkasan kelompok">
+          <div class="stat-card"><span class="stat-icon" style="--tint:#eaf2ff">👥</span><div><strong id="memberCount">6</strong><span>Anggota kelompok</span></div></div>
+          <div class="stat-card"><span class="stat-icon" style="--tint:#fff3ce">🧩</span><div><strong id="taskCount">7</strong><span>Tugas kelompok</span></div></div>
+          <div class="stat-card"><span class="stat-icon" style="--tint:#e1f8eb">✅</span><div><strong id="doneCount">0</strong><span>Tugas selesai</span></div></div>
+          <div class="stat-card"><span class="stat-icon" style="--tint:#fce6f0">🏫</span><div><strong id="statClass">Kelas 5C</strong><span id="statSchool">SDN Negeri Situ Udik</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt" id="anggota">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="section-kicker">Kenalan yuk!</div><h2>Teman Satu Tim Kami</h2><p class="section-desc">Setiap anggota punya keunikan dan peran penting. Pilih kartu untuk melihat profil dan tanggung jawabnya.</p></div>
+          <span class="eyebrow" id="memberCountBadge">⭐ 6 Anggota</span>
+        </div>
+        <div class="toolbar reveal">
+          <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="memberSearch" type="search" placeholder="Cari nama anggota..." aria-label="Cari nama anggota"></label>
+          <select id="roleFilter" aria-label="Filter berdasarkan peran">
+            <option value="">Semua peran</option>
+          </select>
+        </div>
+        <div class="member-grid" id="memberGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="struktur">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="section-kicker">Saling melengkapi</div><h2>Struktur Kelompok</h2><p class="section-desc">Susunan peran membantu kami bekerja lebih teratur, saling mendukung, dan bertanggung jawab.</p></div></div>
+        <div class="structure-grid">
+          <div class="structure-panel reveal">
+            <h3>🌳 Bagan organisasi</h3>
+            <div class="org-tree" id="orgTree"></div>
+            <p class="org-note">Catatan: nama dan pembagian peran di atas merupakan placeholder yang bisa diganti sesuai kesepakatan kelompok.</p>
+          </div>
+          <div class="about-panel reveal">
+            <h3>💙 Nilai yang kami pegang</h3>
+            <div class="values-list">
+              <div class="value-item"><span class="value-icon">🤝</span><div><strong>Kerja sama</strong><p>Kami saling membantu dan menghargai pendapat setiap teman.</p></div></div>
+              <div class="value-item"><span class="value-icon">💡</span><div><strong>Kreativitas</strong><p>Kami berani menyampaikan ide dan mencoba cara baru untuk belajar.</p></div></div>
+              <div class="value-item"><span class="value-icon">🎯</span><div><strong>Tanggung jawab</strong><p>Setiap anggota berusaha menyelesaikan tugas sesuai perannya.</p></div></div>
+              <div class="value-item"><span class="value-icon">🌱</span><div><strong>Saling menghargai</strong><p>Kami belajar dari perbedaan dan tumbuh bersama sebagai tim.</p></div></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Anggota -->
-  <section id="anggota" style="background: white;">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">TIM KAMI</span>
-        <h2>Tujuh Anggota Kelompok</h2>
-      </div>
-      <div class="filter-bar reveal">
-        <div class="search-box">
-          <span class="search-ico">🔍</span>
-          <input type="text" id="memberSearch" placeholder="Cari nama teman...">
+    <section class="section-alt" id="tugas">
+      <div class="container">
+        <div class="section-head reveal">
+          <div><div class="section-kicker">Langkah demi langkah</div><h2>Pembagian Tugas</h2><p class="section-desc">Centang tugas saat sudah selesai. Progres di bawah akan diperbarui otomatis di browser ini.</p></div>
+          <span class="eyebrow">📝 Daftar kerja</span>
         </div>
-        <div class="filter-chips" id="filterChips"></div>
+        <div class="task-list reveal" id="taskList"></div>
+        <div class="progress-panel reveal">
+          <div class="progress-head"><span>Progres penyelesaian tugas</span><span id="progressText">0%</span></div>
+          <div class="progress-track" role="progressbar" aria-label="Progres tugas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+        <p class="gallery-disclaimer">Data tugas awal merupakan contoh. Checklist disimpan di browser perangkat ini, bukan dikirim ke guru atau anggota lain.</p>
       </div>
-      <div class="members-grid" id="membersGrid"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Tugas -->
-  <section id="tugas">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">MISI KELOMPOK</span>
-        <h2>Pembagian Tugas</h2>
+    <section id="galeri">
+      <div class="container">
+        <div class="section-head reveal"><div><div class="section-kicker">Cerita perjalanan kami</div><h2>Galeri Kegiatan</h2><p class="section-desc">Tempat untuk menampilkan momen diskusi, proses berkarya, dan hasil proyek kelompok.</p></div></div>
+        <div class="gallery-grid reveal" id="galleryGrid"></div>
+        <p class="gallery-disclaimer">🖼️ Ilustrasi emoji di atas adalah placeholder, bukan dokumentasi kegiatan asli. Ganti dengan foto kelompok yang telah mendapat izin untuk ditampilkan.</p>
       </div>
-      <div class="tasks-grid" id="tasksGrid"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Galeri -->
-  <section id="galeri" style="background: white;">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">DOKUMENTASI</span>
-        <h2>Galeri Kegiatan</h2>
+    <section class="section-alt" id="tentang">
+      <div class="container">
+        <div class="project-box reveal">
+          <div><div class="section-kicker" style="color:#ffe18b">Tentang kelompok kami</div><h2>Perbedaan Membuat Kita Unik,<br>Kerja Sama Membuat Kita Kuat!</h2><p>Kami ingin menjadikan setiap tugas sebagai kesempatan untuk belajar, saling menghargai, dan menghasilkan karya terbaik. Bagi kami, keberhasilan bukan hanya tentang nilai, tetapi juga tentang proses dan kebersamaan.</p></div>
+          <a class="btn" href="#anggota" id="footerCTA">Kenali 6 Anggota ↗</a>
+        </div>
       </div>
-      <div class="gallery-grid" id="galleryGrid"></div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Proyek -->
-  <section id="proyek">
+  <footer class="footer">
     <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag">HASIL KARYA</span>
-        <h2>Proyek Kelompok</h2>
-      </div>
-      <div id="projectContainer" class="reveal"></div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
+      <div class="footer-top">
         <div>
-          <div class="brand" style="color:white;margin-bottom:1rem;"><span class="brand-icon" id="footerLogo" style="background:white;color:var(--primary);">🎓</span><span id="footerBrandText">Kelas 5</span></div>
-          <p id="footerSchool" style="color:#D1D5DB;font-size:0.9rem;">SDN Negeri Situ Udik · Kelas 5</p>
-          <p id="footerYear" style="color:#D1D5DB;font-size:0.9rem;">Tahun Pelajaran 2026/2027</p>
+          <a class="brand" href="#beranda">
+            <span class="brand-mark" id="footerLogo" aria-hidden="true">🎓</span>
+            <span><strong>Kelompok Belajar Kelas 5C</strong><small>SDN Negeri Situ Udik</small></span>
+          </a>
+          <p class="footer-note">Bersama belajar, bersama berkarya, bersama meraih prestasi. Semangat untuk semua teman kelas 5C!</p>
         </div>
-        <div>
-          <h4 style="color:var(--accent-yellow);margin-bottom:1rem;font-family:var(--font-heading);">Navigasi</h4>
-          <ul style="list-style:none;">
-            <li><a href="#beranda" style="color:#D1D5DB;font-size:0.9rem;">Beranda</a></li>
-            <li><a href="#anggota" style="color:#D1D5DB;font-size:0.9rem;">Anggota</a></li>
-            <li><a href="#galeri" style="color:#D1D5DB;font-size:0.9rem;">Galeri</a></li>
-          </ul>
-        </div>
+        <nav class="footer-links" aria-label="Navigasi footer">
+          <a href="#beranda">Beranda</a><a href="#anggota">Anggota</a><a href="#struktur">Struktur</a><a href="#tugas">Tugas</a><a href="#galeri">Galeri</a>
+        </nav>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Kelompok Belajar Kelas 5 · SDN Negeri Situ Udik</p>
-        <p style="color:var(--accent-yellow);font-style:italic;font-weight:600;margin-top:0.5rem;">"Perbedaan membuat kita unik, kerja sama membuat kita kuat!"</p>
-      </div>
+      <div class="footer-bottom"><span>© <span id="currentYear">2026</span> Kelompok Belajar Kelas 5C</span><span>Dibuat dengan 💙 semangat belajar bersama.</span></div>
     </div>
   </footer>
 
-  <button class="back-to-top" id="backToTop">⬆️</button>
+  <button class="back-top" id="backTop" aria-label="Kembali ke atas" title="Kembali ke atas">↑</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- Modal Profil -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-      <button class="modal-close" id="modalClose">✕</button>
-      <div class="modal-photo" id="modalPhoto"></div>
-      <h3 id="modalTitle">Nama</h3>
-      <span class="member-role m-role" id="modalRole">Peran</span>
-      <div class="modal-info" id="modalInfo"></div>
+  <div class="modal" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <div class="modal-card">
+      <div class="modal-banner" id="modalBanner">
+        <button class="modal-close" id="modalClose" aria-label="Tutup profil">×</button>
+        <div class="modal-avatar" id="modalAvatar" aria-hidden="true">👧🏻</div>
+      </div>
+      <div class="modal-content">
+        <h2 id="modalName">Nama siswa</h2>
+        <div class="modal-role" id="modalRole">Peran anggota</div>
+        <p id="modalDescription"></p>
+        <div class="detail-list">
+          <div class="detail-row"><small>Kelas</small><strong id="modalClass">Kelas 5C</strong></div>
+          <div class="detail-row"><small>Tanggung jawab</small><strong id="modalResponsibilities">Belum diisi</strong></div>
+          <div class="detail-row"><small>Hobi atau minat</small><strong id="modalInterests">Belum diisi</strong></div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Modal Galeri -->
-  <div class="modal-overlay" id="galleryModalOverlay">
-    <div class="modal" style="max-width:600px;padding:1rem;background:transparent;box-shadow:none;">
-      <button class="modal-close" id="galleryModalClose" style="top:-15px;right:-15px;">✕</button>
-      <div id="galleryModalContent" style="border-radius:24px;overflow:hidden;display:grid;place-items:center;min-height:300px;background:#F3F4F6;"></div>
+  <div class="modal" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle">
+    <div class="modal-card">
+      <div class="modal-banner" style="height:80px;background:linear-gradient(135deg,#dcecff,#fff1c9)">
+        <button class="modal-close" id="galleryModalClose" aria-label="Tutup detail galeri">×</button>
+      </div>
+      <div class="modal-content" style="padding-top:22px">
+        <h2 id="galleryModalTitle">Judul galeri</h2>
+        <p id="galleryModalDesc"></p>
+        <p style="font-size:.82rem">Tambahkan foto yang sesuai dengan mengedit bagian galeri di file HTML. Pastikan ada izin untuk memublikasikan foto siswa.</p>
+      </div>
     </div>
   </div>
 
   <script>
-    // Data default
+    "use strict";
+
+    // ==============================================================
+    // 1. MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI
+    // ==============================================================
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxszLQXt6-6b8BOdcQ9XVm2Rq-wir0lghe2DKXuTRBR0Ho-Qtkyz5u29O09qS5y333l/exec";
+
+    // ==============================================================
+    // 2. DATA CADANGAN (JIKA GOOGLE SHEETS GAGAL DIAKSES)
+    // ==============================================================
     const defaultData = {
-      schoolName: 'SDN Negeri Situ Udik', className: 'Kelas 5', year: '2026/2027', groupName: 'Kelompok Belajar Kelas 5', logo: '🎓', teacher: 'Belum diisi', subject: 'Belum diisi',
-      description: 'Kami adalah kelompok belajar yang terdiri dari 7 siswa-siswi kelas 5 SDN Negeri Situ Udik. Kami belajar bersama, saling membantu, dan selalu kompak.',
+      schoolName: 'SDN Negeri Situ Udik', className: 'Kelas 5C', year: '2026/2027', groupName: 'Kelompok Belajar Kelas 5C', logo: '🎓', teacher: 'Belum diisi', subject: 'Belum diisi',
+      description: 'Kami adalah kelompok belajar yang terdiri dari 6 siswa-siswi kelas 5C SDN Negeri Situ Udik. Kami belajar bersama, saling membantu, dan selalu kompak.',
       members: [
-        { id: 1, name: 'Joyce', className: 'Kelas 5', role: 'Ketua Kelompok', photo: '🎀', responsibilities: 'Memimpin diskusi.', interests: 'Membaca', description: 'Ramah dan bertanggung jawab.' },
-        { id: 2, name: 'Alex', className: 'Kelas 5', role: 'Wakil Ketua', photo: '🧢', responsibilities: 'Membantu ketua.', interests: 'Menggambar', description: 'Kreatif.' },
-        { id: 3, name: 'Maya', className: 'Kelas 5', role: 'Sekretaris', photo: '👩', responsibilities: 'Mencatat.', interests: 'Menulis', description: 'Teliti.' },
-        { id: 4, name: 'Leo', className: 'Kelas 5', role: 'Penanggung Jawab Materi', photo: '🎧', responsibilities: 'Materi.', interests: 'Sains', description: 'Suka belajar.' },
-        { id: 5, name: 'Alice', className: 'Kelas 5', role: 'Penanggung Jawab Ilustrasi', photo: '👱‍♀️', responsibilities: 'Desain.', interests: 'Mewarnai', description: 'Imajinatif.' },
-        { id: 6, name: 'Dani', className: 'Kelas 5', role: 'Penanggung Jawab Presentasi', photo: '🧢', responsibilities: 'Presentasi.', interests: 'Berbicara', description: 'Percaya diri.' },
-        { id: 7, name: 'Moana', className: 'Kelas 5', role: 'Penanggung Jawab Dokumentasi', photo: '👧', responsibilities: 'Dokumentasi.', interests: 'Fotografi', description: 'Suka foto.' }
+        { id: 1, name: '[Nama Ketua]', className: 'Kelas 5C', role: 'Ketua Kelompok', photo: '👦🏻', responsibilities: 'Mengatur pembagian tugas dan membantu menjaga kerja sama kelompok.', interests: 'Belum diisi', description: 'Membantu kelompok tetap teratur dan mengajak semua anggota berpartisipasi.' },
+        { id: 2, name: '[Nama Sekretaris]', className: 'Kelas 5C', role: 'Sekretaris', photo: '👧🏽', responsibilities: 'Mencatat hasil diskusi, ide, dan kebutuhan tugas kelompok.', interests: 'Belum diisi', description: 'Membantu mencatat hal penting agar hasil diskusi mudah diingat.' },
+        { id: 3, name: '[Nama Bendahara]', className: 'Kelas 5C', role: 'Bendahara', photo: '👧🏻', responsibilities: 'Mengatur keuangan kelompok dan memastikan kebutuhan tercukupi.', interests: 'Belum diisi', description: 'Membantu mengelola kebutuhan alat dan bahan kelompok.' },
+        { id: 4, name: '[Nama Anggota 1]', className: 'Kelas 5C', role: 'Anggota', photo: '👦🏽', responsibilities: 'Membantu ketua dan anggota lain dalam menyelesaikan tugas.', interests: 'Belum diisi', description: 'Selalu siap membantu teman dan aktif dalam diskusi.' },
+        { id: 5, name: '[Nama Anggota 2]', className: 'Kelas 5C', role: 'Anggota', photo: '👧🏾', responsibilities: 'Membantu mencari ide dan mengerjakan proyek kelompok.', interests: 'Belum diisi', description: 'Kreatif dan suka memberikan ide-ide baru.' },
+        { id: 6, name: '[Nama Anggota 3]', className: 'Kelas 5C', role: 'Anggota', photo: '👦🏾', responsibilities: 'Membantu menyelesaikan tugas kelompok sesuai kesepakatan.', interests: 'Belum diisi', description: 'Bertanggung jawab dan suka bekerja sama.' }
       ],
       tasks: [
-        { id: 1, title: 'Menentukan Topik Proyek', owner: 'Ketua Kelompok', desc: 'Menentukan tema proyek.', status: 'selesai', progress: 100 },
-        { id: 2, title: 'Mengumpulkan Bahan', owner: 'Penanggung Jawab Materi', desc: 'Mencari referensi.', status: 'proses', progress: 60 }
+        { id: 1, title: 'Menentukan tema dan tujuan proyek', owner: 'Ketua Kelompok', desc: 'Sepakati topik, tujuan, dan hasil yang ingin dibuat.', status: 'belum', progress: 0 },
+        { id: 2, title: 'Mengumpulkan bahan dan referensi', owner: 'Anggota', desc: 'Cari informasi dari buku pelajaran.', status: 'belum', progress: 0 },
+        { id: 3, title: 'Mencatat hasil diskusi', owner: 'Sekretaris', desc: 'Tuliskan ide dan keputusan.', status: 'belum', progress: 0 },
+        { id: 4, title: 'Membuat desain atau ilustrasi', owner: 'Ketua Kelompok', desc: 'Susun gambar dan tampilan.', status: 'belum', progress: 0 },
+        { id: 5, title: 'Menyusun hasil akhir', owner: 'Ketua Kelompok', desc: 'Gabungkan materi dan periksa kembali.', status: 'belum', progress: 0 },
+        { id: 6, title: 'Berlatih presentasi', owner: 'Ketua Kelompok', desc: 'Bagi bagian penjelasan dan latihan.', status: 'belum', progress: 0 },
+        { id: 7, title: 'Menyiapkan dokumentasi', owner: 'Ketua Kelompok', desc: 'Rapikan hasil akhir dan dokumentasi.', status: 'belum', progress: 0 }
       ],
       gallery: [
         { emoji: '📚', caption: 'Belajar bersama', image: '' },
         { emoji: '💬', caption: 'Diskusi kelompok', image: '' }
       ],
-      project: { title: 'Proyek Kelompok', subject: 'Belum diisi', desc: 'Deskripsi proyek belum diisi.', date: 'Belum diisi' }
+      project: { title: 'Proyek Kelompok', subject: 'Belum diisi', desc: 'Deskripsi proyek.', date: 'Belum diisi' }
     };
 
-    let appData = JSON.parse(localStorage.getItem('kelas5_data')) || defaultData;
+    let appData = defaultData; // Akan ditimpa oleh data dari Sheets atau LocalStorage
 
-    const $ = (sel) => document.querySelector(sel);
-    const escapeHTML = (str) => { const d = document.createElement('div'); d.textContent = str || ''; return d.innerHTML; };
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const memberGrid = $("#memberGrid");
+    const taskList = $("#taskList");
+    const profileModal = $("#profileModal");
+    const galleryModal = $("#galleryModal");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let lastFocusedElement = null;
+    let toastTimer = null;
 
-    // Render Avatar Grid di Hero (Playground)
-    function renderAvatars() {
-      const grid = $('#avatarGrid');
-      grid.innerHTML = '';
-      // Tampilkan maksimal 6 atau 9 avatar
-      appData.members.slice(0, 9).forEach(m => {
-        const item = document.createElement('div');
-        item.className = 'avatar-item';
-        const photoEl = m.photo && m.photo.startsWith('http') 
-            ? `<img src="${escapeHTML(m.photo)}" class="avatar-img" alt="${escapeHTML(m.name)}">` 
-            : `<div class="avatar-img">${m.photo || '👤'}</div>`;
-        
-        item.innerHTML = `
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[char]);
+    }
+
+    // --- FUNGSI RENDER UTAMA ---
+    function renderAll() {
+      // Logo & Teks Header
+      $("#mainLogo").textContent = appData.logo || "🎓";
+      $("#footerLogo").textContent = appData.logo || "🎓";
+      $("#topYear").textContent = appData.year || "2026/2027";
+      $("#heroDesc").textContent = appData.description;
+      $("#heroMemberCount").textContent = `${appData.members.length} siswa-siswi`;
+      $("#statClass").textContent = appData.className;
+      $("#statSchool").textContent = appData.schoolName;
+      $("#memberCountBadge").textContent = `⭐ ${appData.members.length} Anggota`;
+      $("#footerCTA").textContent = `Kenali ${appData.members.length} Anggota ↗`;
+
+      renderMiniAvatars();
+      renderHeroAvatarGrid();
+      renderRoleFilter();
+      renderMembers();
+      renderTasks();
+      renderGallery();
+      updateOrgTree();
+
+      $("#memberCount").textContent = appData.members.length;
+      $("#currentYear").textContent = new Date().getFullYear();
+    }
+
+    function renderMiniAvatars() {
+      const container = $("#miniAvatars");
+      container.innerHTML = appData.members.slice(0, 4).map(m => `<span>${m.photo || '👤'}</span>`).join('');
+    }
+
+    function renderHeroAvatarGrid() {
+      const grid = $("#heroAvatarGrid");
+      const colors = ['#e0edff', '#fff0c9', '#dff8eb', '#fce4ef', '#e9e4ff', '#ffe8d8'];
+      grid.innerHTML = appData.members.map((m, i) => `
+        <div class="student-bubble">
+          <span class="emoji" style="--bubble:${colors[i % colors.length]}">${m.photo || '👤'}</span>
           <span>${escapeHTML(m.name.split(' ')[0])}</span>
-          ${photoEl}
-        `;
-        item.onclick = () => openMemberModal(m.id);
-        grid.appendChild(item);
-      });
-    }
-
-    function renderHeader() {
-      $('#navLogo').textContent = appData.logo;
-      $('#navBrandText').textContent = appData.groupName;
-      $('#footerLogo').textContent = appData.logo;
-      $('#footerBrandText').textContent = appData.groupName;
-      $('#footerSchool').textContent = `${appData.schoolName} · ${appData.className}`;
-      $('#footerYear').textContent = `Tahun Pelajaran ${appData.year}`;
-      $('#heroTitle').textContent = `Selamat Datang di ${appData.groupName}!`;
-      $('#heroSub').textContent = `${appData.schoolName}. Tempatnya belajar, bermain, dan tumbuh bersama!`;
-    }
-
-    function renderProfile() {
-      $('#profileName').textContent = appData.groupName;
-      $('#profileDesc').textContent = appData.description;
-      $('#statSchool').textContent = appData.schoolName;
-      $('#statCount').textContent = appData.members.length;
-      $('#statYear').textContent = appData.year;
-    }
-
-    let currentFilter = 'all';
-    let currentSearch = '';
-
-    function renderFilterChips() {
-      const roles = ['all', ...new Set(appData.members.map(m => m.role))];
-      const container = $('#filterChips');
-      container.innerHTML = '';
-      roles.forEach(role => {
-        const btn = document.createElement('button');
-        btn.className = 'chip' + (role === currentFilter ? ' active' : '');
-        btn.textContent = role === 'all' ? 'Semua' : role;
-        btn.onclick = () => { currentFilter = role; renderFilterChips(); renderMembers(); };
-        container.appendChild(btn);
-      });
+        </div>
+      `).join('');
     }
 
     function renderMembers() {
-      const grid = $('#membersGrid');
-      grid.innerHTML = '';
-      const filtered = appData.members.filter(m => {
-        const matchFilter = currentFilter === 'all' || m.role === currentFilter;
-        const matchSearch = m.name.toLowerCase().includes(currentSearch.toLowerCase());
-        return matchFilter && matchSearch;
-      });
+      const search = $("#memberSearch").value.trim().toLocaleLowerCase("id");
+      const role = $("#roleFilter").value;
+      const filtered = appData.members.filter(member =>
+        member.name.toLocaleLowerCase("id").includes(search) &&
+        (!role || member.role === role)
+      );
 
-      if (filtered.length === 0) {
-        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:2rem;">Tidak ada anggota ditemukan.</div>`;
+      if (!filtered.length) {
+        memberGrid.innerHTML = '<div class="empty-state"><div style="font-size:2rem">🔎</div><strong>Anggota tidak ditemukan</strong><br><span>Coba kata kunci atau filter yang berbeda.</span></div>';
         return;
       }
 
-      filtered.forEach((m, i) => {
-        const card = document.createElement('div');
-        card.className = 'member-card';
-        card.style.animationDelay = `${i * 0.06}s`;
-        const photoEl = m.photo && m.photo.startsWith('http') 
-            ? `<img src="${escapeHTML(m.photo)}" alt="${escapeHTML(m.name)}" onerror="this.parentElement.innerHTML='👤'">` 
-            : m.photo || '👤';
-        
-        card.innerHTML = `
-          <div class="member-photo">
-            <span class="member-number">Anggota ${String(m.id).padStart(2, '0')}</span>
-            ${photoEl}
+      memberGrid.innerHTML = filtered.map(member => `
+        <article class="member-card">
+          <div class="member-cover" style="--cover:linear-gradient(135deg,#dcecff,#edf6ff)">
+            <span class="member-number">ANGGOTA ${String(member.id).padStart(2, "0")}</span>
+            <div class="member-avatar" style="--avatar-bg:#e0edff" aria-hidden="true">${member.photo || '👤'}</div>
           </div>
           <div class="member-body">
-            <div class="member-name">${escapeHTML(m.name)}</div>
-            <span class="member-role">${escapeHTML(m.role)}</span>
-            <p class="member-desc">${escapeHTML(m.description)}</p>
-            <button class="btn btn-primary member-btn" data-id="${m.id}">Lihat Profil</button>
+            <h3>${escapeHTML(member.name)}</h3>
+            <div class="member-class">${escapeHTML(member.className)} · SDN Negeri Situ Udik</div>
+            <span class="role-tag">${escapeHTML(member.role)}</span>
+            <p class="member-description">${escapeHTML(member.description)}</p>
+            <button class="text-button profile-button" type="button" data-member-id="${member.id}">Lihat profil →</button>
           </div>
-        `;
-        card.querySelector('.member-btn').onclick = () => openMemberModal(m.id);
-        grid.appendChild(card);
+        </article>
+      `).join("");
+    }
+
+    function renderRoleFilter() {
+      const select = $("#roleFilter");
+      select.innerHTML = '<option value="">Semua peran</option>';
+      const roles = [...new Set(appData.members.map(member => member.role))];
+      roles.forEach(role => {
+        const option = document.createElement("option");
+        option.value = role;
+        option.textContent = role;
+        select.appendChild(option);
       });
     }
 
-    $('#memberSearch').oninput = (e) => { currentSearch = e.target.value; renderMembers(); };
-
-    function openMemberModal(id) {
-      const m = appData.members.find(x => x.id === id);
-      if (!m) return;
-      const photoEl = m.photo && m.photo.startsWith('http') 
-          ? `<img src="${escapeHTML(m.photo)}" alt="${escapeHTML(m.name)}">` 
-          : m.photo || '👤';
-      $('#modalPhoto').innerHTML = photoEl;
-      $('#modalTitle').textContent = m.name;
-      $('#modalRole').textContent = m.role;
-      $('#modalInfo').innerHTML = `
-        <div class="modal-info-item"><div class="label">Kelas</div><div class="value">${escapeHTML(m.className)}</div></div>
-        <div class="modal-info-item"><div class="label">Tanggung Jawab</div><div class="value">${escapeHTML(m.responsibilities)}</div></div>
-        <div class="modal-info-item"><div class="label">Hobi / Minat</div><div class="value">${escapeHTML(m.interests || '-')}</div></div>
-        <div class="modal-info-item"><div class="label">Deskripsi</div><div class="value">${escapeHTML(m.description)}</div></div>
-      `;
-      $('#modalOverlay').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    $('#modalClose').onclick = () => { $('#modalOverlay').classList.remove('open'); document.body.style.overflow = ''; };
-    $('#modalOverlay').onclick = (e) => { if (e.target === e.currentTarget) $('#modalClose').click(); };
-
     function renderTasks() {
-      const grid = $('#tasksGrid');
-      grid.innerHTML = '';
-      appData.tasks.forEach(t => {
-        const statusClass = t.status === 'selesai' ? 'status-selesai' : t.status === 'proses' ? 'status-proses' : '';
-        const card = document.createElement('div');
-        card.className = 'task-card';
-        card.innerHTML = `
-          <div class="task-head">
-            <div class="task-title">${escapeHTML(t.title)}</div>
-            <span class="task-status ${statusClass}">${escapeHTML(t.status.toUpperCase())}</span>
-          </div>
-          <div class="task-owner">👤 ${escapeHTML(t.owner)}</div>
-          <p style="font-size:0.9rem;color:var(--text-muted);margin-top:0.5rem;">${escapeHTML(t.desc)}</p>
-          <div class="task-progress"><div class="task-progress-bar" style="width:${t.progress}%"></div></div>
-        `;
-        grid.appendChild(card);
+      let completed = new Set();
+      try {
+        const saved = JSON.parse(localStorage.getItem("situUdikGroupTasks") || "[]");
+        if (Array.isArray(saved)) completed = new Set(saved.filter(id => Number.isInteger(id)));
+      } catch (error) {}
+
+      taskList.innerHTML = appData.tasks.map(task => {
+        const done = completed.has(task.id);
+        return `<article class="task-card ${done ? "done" : ""}">
+          <input class="task-check" type="checkbox" id="task-${task.id}" data-task-id="${task.id}" ${done ? "checked" : ""} aria-label="Tandai ${escapeHTML(task.title)} selesai">
+          <div class="task-main"><strong>${escapeHTML(task.title)}</strong><p>${escapeHTML(task.desc)}</p><span class="task-owner">👤 ${escapeHTML(task.owner)}</span></div>
+        </article>`;
+      }).join("");
+      updateTaskProgress();
+    }
+
+    function getCompletedTasks() {
+      try {
+        const value = JSON.parse(localStorage.getItem("situUdikGroupTasks") || "[]");
+        return new Set(Array.isArray(value) ? value.filter(id => Number.isInteger(id)) : []);
+      } catch { return new Set(); }
+    }
+
+    function updateTaskProgress() {
+      const completed = getCompletedTasks();
+      const count = appData.tasks.filter(task => completed.has(task.id)).length;
+      const percent = appData.tasks.length ? Math.round(count / appData.tasks.length * 100) : 0;
+      $("#taskCount").textContent = appData.tasks.length;
+      $("#doneCount").textContent = count;
+      $("#progressText").textContent = `${percent}% (${count}/${appData.tasks.length})`;
+      $("#progressFill").style.width = `${percent}%`;
+      $("#progressBar").setAttribute("aria-valuenow", String(percent));
+      taskList.querySelectorAll(".task-check").forEach(input => {
+        input.closest(".task-card")?.classList.toggle("done", input.checked);
       });
     }
 
     function renderGallery() {
-      const grid = $('#galleryGrid');
-      grid.innerHTML = '';
-      appData.gallery.forEach(g => {
-        const item = document.createElement('div');
-        item.className = 'gallery-item';
-        const imgEl = g.image ? `<img src="${escapeHTML(g.image)}" alt="${escapeHTML(g.caption)}" onerror="this.parentElement.innerHTML='🖼️'">` : g.emoji;
-        item.innerHTML = `${imgEl}<div class="gallery-caption">${escapeHTML(g.caption)}</div>`;
-        item.onclick = () => {
-          $('#galleryModalContent').innerHTML = g.image ? `<img src="${escapeHTML(g.image)}" style="width:100%;">` : `<span style="font-size:10rem;">${g.emoji}</span>`;
-          $('#galleryModalOverlay').classList.add('open');
-          document.body.style.overflow = 'hidden';
-        };
-        grid.appendChild(item);
+      const grid = $("#galleryGrid");
+      const colors = [
+        "linear-gradient(135deg,#6ab8ff,#3159b9)",
+        "linear-gradient(135deg,#ffc96b,#e78255)",
+        "linear-gradient(135deg,#63d8b2,#278b86)",
+        "linear-gradient(135deg,#bca8ff,#6955b5)",
+        "linear-gradient(135deg,#ff9dbb,#d65e86)"
+      ];
+      grid.innerHTML = appData.gallery.map((g, i) => `
+        <button class="gallery-tile" type="button" style="--tile-bg:${colors[i % colors.length]}" data-gallery-title="${escapeHTML(g.caption)}" data-gallery-desc="Dokumentasi: ${escapeHTML(g.caption)}">
+          ${g.image ? `<img src="${escapeHTML(g.image)}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;" alt="${escapeHTML(g.caption)}">` : `<span class="gallery-emoji">${g.emoji || '🖼️'}</span>`}
+          <span><strong>${escapeHTML(g.caption)}</strong><small>Kegiatan kelompok</small></span>
+        </button>
+      `).join("");
+
+      // Re-attach event listeners for gallery
+      grid.querySelectorAll('.gallery-tile').forEach(button => {
+        button.addEventListener("click", () => {
+          $("#galleryModalTitle").textContent = button.dataset.galleryTitle;
+          $("#galleryModalDesc").textContent = button.dataset.galleryDesc;
+          openModal(galleryModal, button);
+        });
       });
     }
-    $('#galleryModalClose').onclick = () => { $('#galleryModalOverlay').classList.remove('open'); document.body.style.overflow = ''; };
-    $('#galleryModalOverlay').onclick = (e) => { if (e.target === e.currentTarget) $('#galleryModalClose').click(); };
 
-    function renderProject() {
-      const container = $('#projectContainer');
-      container.innerHTML = `
-        <div class="project-card">
-          <div class="project-visual">🎨</div>
-          <div class="project-info">
-            <span class="section-tag">${escapeHTML(appData.project.subject)}</span>
-            <h3 style="font-family:var(--font-heading);font-size:1.8rem;margin-bottom:0.5rem;">${escapeHTML(appData.project.title)}</h3>
-            <p style="color:var(--text-muted);margin-bottom:1rem;">${escapeHTML(appData.project.desc)}</p>
-            <div style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">📅 Tanggal: ${escapeHTML(appData.project.date)}</div>
-          </div>
+    function updateOrgTree() {
+      const orgTree = $("#orgTree");
+      if (!orgTree) return;
+
+      const ketua = appData.members.find(m => m.role === "Ketua Kelompok") || appData.members[0] || {name:'-'};
+      const sekretaris = appData.members.find(m => m.role === "Sekretaris") || appData.members[1] || {name:'-'};
+      const bendahara = appData.members.find(m => m.role === "Bendahara") || appData.members[2] || {name:'-'};
+      const anggota = appData.members.filter(m => m.role === "Anggota");
+
+      orgTree.innerHTML = `
+        <div class="org-node primary"><strong>Ketua Kelompok</strong><small>${escapeHTML(ketua.name)}</small></div>
+        <div class="org-line"></div>
+        <div class="org-pair">
+          <div class="org-node"><strong>Sekretaris</strong><small>${escapeHTML(sekretaris.name)}</small></div>
+          <div class="org-node"><strong>Bendahara</strong><small>${escapeHTML(bendahara.name)}</small></div>
+        </div>
+        <div class="org-line"></div>
+        <div class="org-members">
+          ${anggota.map(a => `<div class="org-node"><strong>Anggota</strong><small>${escapeHTML(a.name)}</small></div>`).join('')}
         </div>
       `;
     }
 
-    function init() {
-      renderHeader();
-      renderAvatars();
-      renderProfile();
-      renderFilterChips();
-      renderMembers();
-      renderTasks();
-      renderGallery();
-      renderProject();
-
-      $('#hamburger').onclick = () => {
-        $('#navLinks').classList.toggle('open');
-        $('#hamburger').classList.toggle('active');
-      };
-      document.querySelectorAll('.nav-links a').forEach(a => a.onclick = () => {
-        $('#navLinks').classList.remove('open');
-        $('#hamburger').classList.remove('active');
-      });
-
-      window.onscroll = () => $('#backToTop').classList.toggle('show', window.scrollY > 400);
-      $('#backToTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    function showProfile(id, trigger) {
+      const member = appData.members.find(item => item.id === Number(id));
+      if (!member) return;
+      $("#modalAvatar").textContent = member.photo || '👤';
+      $("#modalBanner").style.background = "linear-gradient(135deg,#dcecff,#fff1c9)";
+      $("#modalName").textContent = member.name;
+      $("#modalRole").textContent = member.role;
+      $("#modalDescription").textContent = member.description;
+      $("#modalClass").textContent = member.className;
+      $("#modalResponsibilities").textContent = member.responsibilities;
+      $("#modalInterests").textContent = member.interests;
+      openModal(profileModal, trigger);
     }
 
-    init();
+    // --- FUNGSI MODAL & UI ---
+    function openModal(modal, trigger) {
+      lastFocusedElement = trigger || document.activeElement;
+      modal.classList.add("open");
+      document.body.classList.add("modal-open");
+      const focusTarget = modal.querySelector("button");
+      if (focusTarget) focusTarget.focus();
+    }
+
+    function closeModal(modal) {
+      modal.classList.remove("open");
+      if (!profileModal.classList.contains("open") && !galleryModal.classList.contains("open")) {
+        document.body.classList.remove("modal-open");
+      }
+      if (lastFocusedElement && typeof lastFocusedElement.focus === "function") lastFocusedElement.focus();
+    }
+
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    // --- EVENT LISTENERS ---
+    $("#memberSearch").addEventListener("input", renderMembers);
+    $("#roleFilter").addEventListener("change", renderMembers);
+
+    memberGrid.addEventListener("click", event => {
+      const button = event.target.closest(".profile-button");
+      if (button) showProfile(button.dataset.memberId, button);
+    });
+
+    taskList.addEventListener("change", event => {
+      const input = event.target.closest(".task-check");
+      if (!input) return;
+      const completed = getCompletedTasks();
+      const id = Number(input.dataset.taskId);
+      if (input.checked) completed.add(id);
+      else completed.delete(id);
+      try {
+        localStorage.setItem("situUdikGroupTasks", JSON.stringify([...completed]));
+        updateTaskProgress();
+        showToast(input.checked ? "Tugas ditandai selesai ✓" : "Status tugas diperbarui");
+      } catch (error) {
+        showToast("Browser tidak dapat menyimpan perubahan.");
+        input.checked = !input.checked;
+      }
+    });
+
+    $("#menuToggle").addEventListener("click", () => {
+      const nav = $("#navLinks");
+      const isOpen = nav.classList.toggle("open");
+      $("#menuToggle").setAttribute("aria-expanded", String(isOpen));
+      $("#menuToggle").textContent = isOpen ? "×" : "☰";
+    });
+
+    $("#navLinks").addEventListener("click", event => {
+      if (event.target.closest("a")) {
+        $("#navLinks").classList.remove("open");
+        $("#menuToggle").setAttribute("aria-expanded", "false");
+        $("#menuToggle").textContent = "☰";
+      }
+    });
+
+    $("#modalClose").addEventListener("click", () => closeModal(profileModal));
+    $("#galleryModalClose").addEventListener("click", () => closeModal(galleryModal));
+
+    [profileModal, galleryModal].forEach(modal => {
+      modal.addEventListener("click", event => {
+        if (event.target === modal) closeModal(modal);
+      });
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        if (profileModal.classList.contains("open")) closeModal(profileModal);
+        else if (galleryModal.classList.contains("open")) closeModal(galleryModal);
+        else if ($("#navLinks").classList.contains("open")) {
+          $("#navLinks").classList.remove("open");
+          $("#menuToggle").setAttribute("aria-expanded", "false");
+          $("#menuToggle").textContent = "☰";
+        }
+      }
+    });
+
+    const backTop = $("#backTop");
+    window.addEventListener("scroll", () => {
+      backTop.classList.toggle("visible", window.scrollY > 500);
+    }, { passive: true });
+    backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" }));
+
+    // --- LOGIKA PENGAMBILAN DATA (CLOUD-FIRST) ---
+    async function initData() {
+      const overlay = $("#loadingOverlay");
+      
+      // Jika URL belum diisi, langsung pakai LocalStorage/Default
+      if (GAS_URL.includes("https://script.google.com/macros/s/AKfycbxszLQXt6-6b8BOdcQ9XVm2Rq-wir0lghe2DKXuTRBR0Ho-Qtkyz5u29O09qS5y333l/exec")) {
+        console.warn("URL Google Sheets belum diisi. Menggunakan data lokal.");
+        const local = localStorage.getItem('kelas5_data');
+        if (local) appData = JSON.parse(local);
+        finishLoading();
+        return;
+      }
+
+      try {
+        // Tembak API Google Sheets
+        const response = await fetch(GAS_URL);
+        const cloudData = await response.json();
+        
+        if (cloudData && cloudData.schoolName) {
+          // Jika data dari cloud valid, timpa appData
+          appData = cloudData;
+          // Simpan salinan ke LocalStorage sebagai cadangan offline
+          localStorage.setItem('kelas5_data', JSON.stringify(appData));
+          console.log("Data berhasil dimuat dari Google Sheets.");
+        } else {
+          throw new Error("Format data cloud tidak valid");
+        }
+      } catch (error) {
+        console.error("Gagal mengambil data dari Google Sheets:", error);
+        // Fallback 1: Coba ambil dari LocalStorage
+        const local = localStorage.getItem('kelas5_data');
+        if (local) {
+          appData = JSON.parse(local);
+          console.log("Menggunakan data cadangan LocalStorage.");
+        } else {
+          console.log("Menggunakan data default (fallback terakhir).");
+        }
+      } finally {
+        finishLoading();
+      }
+    }
+
+    function finishLoading() {
+      renderAll();
+      
+      // Sembunyikan overlay loading
+      const overlay = $("#loadingOverlay");
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 400);
+
+      // Animasi Reveal
+      if ("IntersectionObserver" in window && !reducedMotion) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+      } else {
+        document.querySelectorAll(".reveal").forEach(element => element.classList.add("revealed"));
+      }
+    }
+
+    // Jalankan inisialisasi
+    initData();
+
   </script>
 </body>
 </html>
