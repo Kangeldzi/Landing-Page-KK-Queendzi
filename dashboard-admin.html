@@ -93,14 +93,16 @@
 
   <!-- LOGIN SCREEN -->
   <div id="loginScreen">
-    <div class="login-box">
-      <h2>🔐 Login Admin</h2>
-      <p style="color:#64748b; font-size:0.85rem; margin-bottom:1rem;">Masukkan password untuk mengakses dashboard.</p>
-      <div class="error-msg" id="loginError">Password salah! Silakan coba lagi.</div>
-      <input type="password" id="passwordInput" placeholder="Password (default: admin123)">
-      <button onclick="checkLogin()">Masuk</button>
-    </div>
+  <div class="login-box">
+    <h2>🔐 Login Admin</h2>
+    <!-- Teks petunjuk password dihapus untuk keamanan -->
+    <p style="color:#64748b; font-size:0.85rem; margin-bottom:1rem;">Silakan masukkan kata sandi administrator.</p>
+    <div class="error-msg" id="loginError">Password salah! Silakan coba lagi.</div>
+    <!-- Placeholder diubah menjadi netral -->
+    <input type="password" id="passwordInput" placeholder="Masukkan password...">
+    <button onclick="checkLogin()">Masuk</button>
   </div>
+</div>
 
   <!-- DASHBOARD -->
   <div id="dashboard">
@@ -174,17 +176,18 @@
     const $ = (sel) => document.querySelector(sel);
     let appData = {};
 
-    function checkLogin() {
-      const pass = $('#passwordInput').value;
-      if (pass === 'admin123') {
-        localStorage.setItem('admin_logged_in', 'true');
-        $('#loginScreen').style.display = 'none';
-        $('#dashboard').style.display = 'block';
-        loadData();
-      } else {
-        $('#loginError').style.display = 'block';
-      }
-    }
+   function checkLogin() {
+  const pass = $('#passwordInput').value;
+  // GANTI PASSWORD DI SINI
+  if (pass === 'admin4212') { 
+    localStorage.setItem('admin_logged_in', 'true');
+    $('#loginScreen').style.display = 'none';
+    $('#dashboard').style.display = 'block';
+    loadData();
+  } else {
+    $('#loginError').style.display = 'block';
+  }
+} 
     function logout() { localStorage.removeItem('admin_logged_in'); location.reload(); }
 
     function loadData() {
