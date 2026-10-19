@@ -813,10 +813,11 @@
     }, { passive: true });
     backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" }));
 
-    // --- LOGIKA PENGAMBILAN DATA (ANTI-CRASH & TIMEOUT) ---
+        // --- LOGIKA PENGAMBILAN DATA (ANTI-CRASH & TIMEOUT) ---
     async function initData() {
       const overlay = $("#loadingOverlay");
       
+      // Pengaman: Paksa hilangkan loading setelah 5 detik jika internet lambat
       const safetyTimeout = setTimeout(() => {
         if (overlay.style.display !== 'none') {
           const local = localStorage.getItem('kelas5_data');
@@ -827,7 +828,8 @@
         }
       }, 5000);
 
-      if (GAS_URL.includes("https://script.google.com/macros/s/AKfycbxszLQXt6-6b8BOdcQ9XVm2Rq-wir0lghe2DKXuTRBR0Ho-Qtkyz5u29O09qS5y333l/exec")) {
+      // Jika URL GAS belum diisi (masih teks placeholder)
+      if (GAS_URL.includes("MASUKKAN_URL")) {
         const local = localStorage.getItem('kelas5_data');
         if (local) {
           try { appData = JSON.parse(local); } catch(e){}
@@ -837,6 +839,7 @@
         return;
       }
 
+      // JIKA URL VALID, SELALU AMBIL DARI GOOGLE SHEETS (CLOUD)
       try {
         const response = await fetch(GAS_URL);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -844,12 +847,14 @@
         
         if (cloudData && cloudData.schoolName) {
           appData = cloudData;
+          // Simpan cadangan ke LocalStorage perangkat pengguna
           localStorage.setItem('kelas5_data', JSON.stringify(appData));
         } else {
-          throw new Error("Format data cloud tidak valid");
+          throw new Error("Format data cloud tidak valid atau Sheets kosong");
         }
       } catch (error) {
         console.error("Gagal memuat dari Cloud:", error);
+        // Jika gagal ambil dari internet, gunakan LocalStorage (offline mode)
         const local = localStorage.getItem('kelas5_data');
         if (local) {
           try { appData = JSON.parse(local); } catch(e){}
