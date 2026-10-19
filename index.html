@@ -515,15 +515,23 @@
     </div>
   </div>
 
+  <!-- Modal Galeri Baru -->
   <div class="modal" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryModalTitle">
-    <div class="modal-card">
-      <div class="modal-banner" style="height:80px;background:linear-gradient(135deg,#dcecff,#fff1c9)">
-        <button class="modal-close" id="galleryModalClose" aria-label="Tutup detail galeri">×</button>
+    <div class="modal-card" style="background: transparent; box-shadow: none; max-width: 800px;">
+      <!-- Tombol X Close di kanan atas -->
+      <button class="modal-close" id="galleryModalClose" aria-label="Tutup detail galeri" style="top: 10px; right: 10px; background: white; border-radius: 50%; width: 40px; height: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">✕</button>
+      
+      <!-- Gambar Utama -->
+      <div id="galleryModalImageContainer" style="width: 100%; border-radius: 16px 16px 0 0; overflow: hidden; background: #000; display: grid; place-items: center; min-height: 250px; max-height: 65vh;">
+        <img id="galleryModalImg" src="" alt="Preview" style="width: 100%; height: auto; max-height: 65vh; object-fit: contain; display: none;">
+        <span id="galleryModalEmoji" style="font-size: 8rem; padding: 2rem;"></span>
       </div>
-      <div class="modal-content" style="padding-top:22px">
-        <h2 id="galleryModalTitle">Judul galeri</h2>
-        <p id="galleryModalDesc"></p>
-        <p style="font-size:.82rem">Galeri Photo Kegiatan Kerja Kelompok SD Negeri Situ Udik Kelas 5C.</p>
+      
+      <!-- Area Teks & Tombol Tutup -->
+      <div style="background: white; padding: 20px; border-radius: 0 0 16px 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+        <h2 id="galleryModalTitle" style="font-size: 1.4rem; margin: 0 0 10px; color: var(--ink);">Judul galeri</h2>
+        <p id="galleryModalDesc" style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem;">Deskripsi dokumentasi.</p>
+        <button class="btn btn-primary" style="width: 100%;" onclick="document.getElementById('galleryModalClose').click()">Tutup</button>
       </div>
     </div>
   </div>
@@ -718,7 +726,7 @@
       });
     }
 
-    function renderGallery() {
+        function renderGallery() {
       const grid = $("#galleryGrid");
       const gallery = appData.gallery || [];
       const colors = [
@@ -730,7 +738,7 @@
       ];
       
       grid.innerHTML = gallery.map((g, i) => `
-        <button class="gallery-tile" type="button" style="--tile-bg:${colors[i % colors.length]}" data-gallery-title="${escapeHTML(g.caption || 'Galeri')}" data-gallery-desc="Dokumentasi: ${escapeHTML(g.caption || '-')}">
+        <button class="gallery-tile" type="button" style="--tile-bg:${colors[i % colors.length]}" data-image="${escapeHTML(g.image || '')}" data-emoji="${escapeHTML(g.emoji || '🖼️')}" data-caption="${escapeHTML(g.caption || 'Kegiatan')}">
           ${g.image ? `<img src="${escapeHTML(g.image)}" onerror="this.style.display='none'" alt="${escapeHTML(g.caption)}">` : `<span class="gallery-emoji">${g.emoji || '🖼️'}</span>`}
           <span><strong>${escapeHTML(g.caption || 'Kegiatan')}</strong><small>Kegiatan kelompok</small></span>
         </button>
@@ -738,8 +746,25 @@
 
       grid.querySelectorAll('.gallery-tile').forEach(button => {
         button.addEventListener("click", () => {
-          $("#galleryModalTitle").textContent = button.dataset.galleryTitle;
-          $("#galleryModalDesc").textContent = button.dataset.galleryDesc;
+          const imgUrl = button.dataset.image;
+          const emoji = button.dataset.emoji;
+          const caption = button.dataset.caption;
+
+          // Set Judul & Deskripsi
+          $("#galleryModalTitle").textContent = caption;
+          $("#galleryModalDesc").textContent = `Dokumentasi kegiatan: ${caption}`;
+
+          // Set Gambar atau Emoji
+          if (imgUrl) {
+            $("#galleryModalImg").src = imgUrl;
+            $("#galleryModalImg").style.display = "block";
+            $("#galleryModalEmoji").style.display = "none";
+          } else {
+            $("#galleryModalImg").style.display = "none";
+            $("#galleryModalEmoji").textContent = emoji;
+            $("#galleryModalEmoji").style.display = "block";
+          }
+          
           openModal(galleryModal, button);
         });
       });
